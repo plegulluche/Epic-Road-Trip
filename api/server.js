@@ -13,14 +13,12 @@ dotenv.config({ path: './config.env' });
 const app = require('./app');
 
 // DB
-const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
-);
 
-mongoose.connect(DB).then(() => {
-  console.log('DB connection success !!');
-});
+// mongoose.connect(
+//     process.env.ATLAS_URI + process.env.DB_NAME,
+//     {useNewUrlParser: true, useUnifiedTopology: true,}
+// ).then(() => console.log('connected to mongodb'))
+// .catch((err) => console.log('Failed to connect mongodb', err));
 
 // START SERVER
 const port = process.env.PORT;
