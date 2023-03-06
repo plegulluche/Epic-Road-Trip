@@ -1,0 +1,9 @@
+services: 
+  api:
+    container_name: st_api
+    image: st_api
+    restart: always
+    build: ./api
+    ports:
+      - "4000:4000"
+    
