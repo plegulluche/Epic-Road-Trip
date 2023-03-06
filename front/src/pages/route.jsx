@@ -1,0 +1,20 @@
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import Home from "../pages/Home"
+import About from "../pages/About"
+import Profile from "../pages/Profile"
+import Login from "./login";
+import Register from "./register";
+
+export default function RoutesManager() {
+  return (
+        <Router>   
+                <Routes>
+                  <Route path="/" element={ <Home/> } />
+                  <Route path="about" element={ <About/> } />
+                  <Route path="profile" element={ <Profile/> } />
+                  <Route path="login" element={ <Login/> } />
+                  <Route path="register" element={ <Register/> } />
+                </Routes>               
+          </Router>
+  );
+};
