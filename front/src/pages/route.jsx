@@ -6,6 +6,8 @@ import Login from "./login";
 import Register from "./register";
 
 function Navbar() {
+  let i = 0
+
   return (
     <div className="w-full bg-gray-300 h-[60px]">
 
@@ -15,7 +17,7 @@ function Navbar() {
 
 function Layout() {
   return (
-    <div className="w-full px-40 font-sora">
+    <div className="w-full xl:px-40 lg:px-28 md:px-20 px-10 font-sora">
       <Navbar />
       <Outlet />
     </div>

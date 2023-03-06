@@ -1,6 +1,5 @@
-import { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { PinAlt, Calendar, Dollar, Pin } from "iconoir-react";
+import { Fragment } from "react";
+import { PinAlt, Calendar, Dollar } from "iconoir-react";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRangePicker } from 'react-date-range';
@@ -20,7 +19,7 @@ function DatePicker({onChange, range}) {
         </div>
       }
       <div className="hover:cursor-pointer hover:brightness-90">
-        <div className="ml-10 mt-4 w-[200px] h-[35px] bg-gray-100 shadow-xl drop-shadow rounded flex items-center gap-5"
+        <div className="ml-10 mt-4 w-[70%] h-[35px] bg-gray-100 shadow-xl drop-shadow rounded flex items-center gap-5"
           onClick={() => setOpen(!open)}>
           <Calendar width={25} height={20} color={"#3671A8"} className="ml-2"/>
           <p className="text-sm text-gray-500">Pick a range</p>
@@ -34,9 +33,9 @@ function SearchCard() {
   const [inputs, setInputs] = useState({location: "", dates: {startDate: new Date(), endDate: new Date(), key: 'selection'}, budget: null})
 
   return (
-    <div className="absolute w-full bottom-[-50px] h-[150px] px-20">
+    <div className="absolute w-full lg:bottom-[-50px] bottom-[-150px] lg:h-[150px] h-[400px] sm:px-20">
         <div className="drop-shadow-xl shadow-xl rounded-3xl bg-white h-full relative flex justify-center p-5">
-            <div className="h-full w-full grid grid-cols-3">
+            <div className="h-full w-full grid lg:grid-cols-3 grid-cols-1">
               <div className="col-span-1">
                 <div className="ml-5 flex items-center gap-3">
                   <div className="w-[35px] h-[35px] bg-gray-300 rounded-full flex items-center justify-center">
@@ -49,18 +48,18 @@ function SearchCard() {
                 </div>
               </div>
               <div className="col-span-1 relative">
-                  <div className="absolute h-[70%] w-[2px] bg-gray-300"></div>
-                  <div className="ml-10 flex items-center gap-3">
+                  <div className="hidden lg:flex lg:absolute h-[70%] w-[2px] bg-gray-300"></div>
+                  <div className="lg:ml-10 ml-5 flex items-center gap-3">
                     <div className="w-[35px] h-[35px] bg-gray-300 rounded-full flex items-center justify-center">
                       <Calendar width={20} height={20} /> 
                     </div>
                     <p className="text-lg">Dates</p>
                   </div>
                   <DatePicker onChange={(e) => setInputs({...inputs, dates: e})} range={inputs.dates}/>
-                  <div className="absolute h-[70%] w-[2px] bg-gray-300 right-0 top-0"></div>
+                  <div className="hidden lg:flex lg:absolute h-[70%] w-[2px] bg-gray-300 right-0 top-0"></div>
               </div>
               <div className="col-span-1">
-                <div className="ml-10 flex items-center gap-3">
+                <div className="lg:ml-10 ml-5 flex items-center gap-3">
                   <div className="w-[35px] h-[35px] bg-gray-300 rounded-full flex items-center justify-center">
                     <Dollar width={20} height={20} /> 
                   </div>
@@ -84,8 +83,8 @@ function Suggestions() {
 
   return (
     <div className="w-full flex flex-col items-center ">
-      <p className="text-gray-600 text-xl">Suggestions</p>
-      <div className="flex gap-10 mt-5">
+      <p className="text-gray-600 text-xl mb-5">Suggestions</p>
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 lg:gap-10 gap-5">
         {fakeSuggest.map((el, index) => {
           return (
             <div key={index} className="px-5 py-1 w-fit h-fit border-2 border-gray-300 rounded-lg hover:cursor-pointer hover:brightness-90">
@@ -100,20 +99,20 @@ function Suggestions() {
 
 function IlluCard() {
   return (
-    <div className="">
+    <Fragment>
       <img src='/card.png' className="w-full h-[500px]" />
       <div className="absolute w-full h-full top-0">
         <div className="flex flex-col items-center w-full h-full p-10 overflow-hidden relative">
-          <p className="text-5xl text-[#2D2D2D] font-bold">Explore Beautiful Places</p>
-          <p className="text-xl text-gray-500 font-bold mt-3">All you need in one click</p>
-          <img className="overflow-hidden absolute right-[-250px] top-[-100px] max-w-[800px]" src='/plane2.webp' />
+          <div className="relative z-40">
+            <p className="text-5xl text-[#2D2D2D] font-bold">Explore Beautiful Places</p>
+            <p className="text-xl text-gray-500 font-bold mt-3">All you need in one click</p>
+          </div>
+          <img className="overflow-hidden absolute right-[-250px] top-[-100px] max-w-[800px] w-[100%]" src='/plane2.webp' />
           <img className="overflow-hidden absolute left-[-50px] bottom-[150px] max-w-[400px]" src='/cloud.png' />
         </div>
-        <div className="">
-          <SearchCard />
-        </div>
+        <SearchCard />
       </div>
-    </div>
+    </Fragment>
   )
 }
 
@@ -123,7 +122,7 @@ export default function Home() {
       <div className="mt-10 w-full h-full relative">
         <IlluCard />
       </div>
-      <div className="mt-[100px]">
+      <div className="lg:mt-[100px] mt-[200px]">
         <Suggestions />
       </div>
     </div>
