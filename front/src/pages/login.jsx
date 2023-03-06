@@ -8,7 +8,7 @@ const styles = {
         height: '100vh',
     },
     leftPanel: {
-        flex: '1 1 auto',
+        flex: '0 0 40%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -17,14 +17,12 @@ const styles = {
         backgroundPosition: 'center',
     },
     logo: {
-        // maxWidth: '100%',
-        // maxHeight: '100%',
-        width: '100%',
-        height: '100%',
-        // objectFit: 'contain',
+        maxWidth: '90%',
+        maxHeight: '90%',
+        width: '90%',
+        height: '90%',
     },
     logoText: {
-        // marginTop: '1rem',
         fontSize: 'calc(4vh + 1rem)',
         fontWeight: 'bold',
         textAlign: 'center',
@@ -59,8 +57,8 @@ export default function Login() {
     return (
         <div style={styles.container}>
             <div style={styles.leftPanel}>
-                <div style={{ width: '100%' }}>
-                    <div style={{ position: 'relative', paddingBottom: '100%' }}>
+                <div style={{ width: '90%' }}>
+                    <div style={{ position: 'relative', paddingBottom: '95%' }}>
                         <img src="/plane.png" alt="Logo" style={{ ...styles.logo, position: 'absolute', top: 0, left: 0 }} />
                     </div>
                     <div style={styles.logoText}>Ready to take off ?</div>
@@ -68,7 +66,7 @@ export default function Login() {
             </div>
             <div style={styles.rightPanel}>
                 <img src="/logo.png" alt="Right Panel Logo" style={styles.rightPanelLogo} />
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={formStyle} >
                     <label htmlFor="email-input">Email:</label>
                     <input
                         type="email"
@@ -97,15 +95,13 @@ export default function Login() {
 }
 
 const formStyle = {
-    border: '1px solid #787878',
     borderRadius: '5px',
     padding: '20px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    maxWidth: '400px',
+    maxWidth: '700px',
 };
 
 const inputStyle = {
