@@ -1,19 +1,40 @@
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router, Outlet } from "react-router-dom";
 import Home from "../pages/Home"
 import About from "../pages/About"
 import Profile from "../pages/Profile"
 import Login from "./login";
 import Register from "./register";
 
+function Navbar() {
+  let i = 0
+
+  return (
+    <div className="w-full bg-gray-300 h-[60px]">
+
+    </div>
+  )
+}
+
+function Layout() {
+  return (
+    <div className="w-full xl:px-40 lg:px-28 md:px-20 px-10 font-sora">
+      <Navbar />
+      <Outlet />
+    </div>
+  )
+}
+
 export default function RoutesManager() {
   return (
         <Router>   
                 <Routes>
-                  <Route path="/" element={ <Home/> } />
-                  <Route path="about" element={ <About/> } />
-                  <Route path="profile" element={ <Profile/> } />
-                  <Route path="login" element={ <Login/> } />
-                  <Route path="register" element={ <Register/> } />
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={ <Home/> } />
+                    <Route path="about" element={ <About/> } />
+                    <Route path="profile" element={ <Profile/> } />
+                    <Route path="login" element={ <Login/> } />
+                    <Route path="register" element={ <Register/> } />
+                  </Route>
                 </Routes>               
           </Router>
   );
