@@ -7,7 +7,10 @@ const API_KEY = process.env.FOURSQUARE_API_KEY;
 
 
 sdk.auth(API_KEY);
-sdk.placeSearch({near: 'montrouge'})
+sdk.placeSearch({near: 'montrouge',categories: '13065'/*restaurant*/})
   .then(({ data }) => console.log(data))
   .catch(err => console.error(err));
+
+  
+
 
