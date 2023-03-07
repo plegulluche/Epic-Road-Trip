@@ -34,5 +34,6 @@ const mapController = require("../controllers/mapController");
 // // *** get all saved searches from a user ***
 // router.get("favorites/:user", searchController.getUserFavorites);
 router.get('/map', mapController.getLocation);
+router.get('/map/reversed', mapController.getAddress);
 
 module.exports = router;

@@ -7,6 +7,11 @@ const axios = require("axios");
 //          add a function to parse the variables send and make the exports 
 //              functions a normal function and a callback that call those function and return a json
 
+
+// TODO : add filters to the google query to get only the address and the coordinates.
+// TODO : add aa function that cache the result of a serach to avoid to much request to google api
+
+
 // get coord of a place from google api
 // takes a string as input and returns an object with lat and lng
 module.exports.getLocation = async (req, res) => {
