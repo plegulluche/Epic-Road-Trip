@@ -141,9 +141,9 @@ export default function RoutesManager() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
         </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </Router>
   );
