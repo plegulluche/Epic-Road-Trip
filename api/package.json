@@ -2,20 +2,39 @@
   "name": "back",
   "version": "1.0.0",
   "description": "baxckend app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test-init": "./node_modules/jasmine/bin/jasmine.js init",
-    "test": "jasmine"
+    "test": "jasmine",
+    "start": "nodemon -r dotenv/config server.js dotenv_config_path=.env",
+    "swagger-autogen": "node ./swagger.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*swagger.json"
+    ]
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "amadeus": "^8.0.0",
+    "api": "^5.0.7",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^7.0.0"
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.0",
+    "nodemon": "^2.0.20",
+    "swagger-autogen": "^2.23.1",
+    "swagger-ui-express": "^4.6.2",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
-    "jasmine": "^4.5.0"
+    "googlemaps": "^1.12.0",
+    "jasmine": "^4.5.0",
+    "node-fetch": "^2.6.9"
   }
 }
