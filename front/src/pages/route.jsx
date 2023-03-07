@@ -1,26 +1,41 @@
-import { Route, Routes, BrowserRouter as Router, Outlet } from "react-router-dom";
-import Home from "../pages/Home"
-import About from "../pages/About"
-import Profile from "../pages/Profile"
+import {
+  Route,
+  Routes,
+  BrowserRouter as Router,
+  Outlet,
+} from "react-router-dom";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import Profile from "../pages/Profile";
 import Login from "./login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Register from "./register";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(window.location.pathname);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    setSelected(window.location.pathname);
+  }, [window.location.pathname]);
+
   return (
-    <div className="bg-gray-300">
-      <nav className="flex flex-wrap items-center justify-between px-4 py-3 bg-white">
-        <div className="flex items-center flex-shrink-0 mr-6">
+    <div>
+      <div className="grid grid-cols-12 items-center px-4">
+        <div className="flex items-center col-span-2">
           <NavLink to="/" className="text-indigo-500 font-semibold">
-          
-          <img src="NavbarLogo.png" alt="Logo" className="hidden sm:block w-20" />
+            <img
+              src="NavbarLogo.png"
+              alt="Logo"
+              className="hidden sm:block w-[100px]"
+            />
           </NavLink>
         </div>
         <div className="block lg:hidden">
@@ -41,56 +56,70 @@ function Navbar() {
         <div
           className={`${
             isOpen ? "block" : "hidden"
-          } w-full block flex-grow lg:flex lg:items-center lg:w-auto`}
+          } w-full block flex-grow lg:flex lg:items-center lg:w-auto col-span-8`}
         >
-          <ul className="pt-6 lg:pt-0 lg:flex-grow lg:flex lg:justify-center">
-            <li>
-              <NavLink
-                to="/"
-                className="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-black mr-8"
-                activeClassName="text-indigo-500"
-                onClick={toggleMenu}
-              >
+          <div className="w-full h-10 flex items-center justify-center gap-8">
+            <div
+              className={`${
+                selected === "/" ? "text-[#3671A8]" : "text-gray-400"
+              } relative h-[30px] flex justify-center`}
+            >
+              <p className="hover:cursor-pointer" onClick={() => navigate("/")}>
                 Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/profile"
-                className="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-black mr-8"
-                activeClassName="text-indigo-500"
-                onClick={toggleMenu}
+              </p>
+              {selected === "/" && (
+                <div className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"></div>
+              )}
+            </div>
+
+            <div
+              className={`${
+                selected === "/profile" ? "text-[#3671A8]" : "text-gray-400"
+              } relative h-[30px] flex justify-center`}
+            >
+              <p
+                className="hover:cursor-pointer"
+                onClick={() => navigate("/profile")}
               >
                 Profile
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/about"
-                className="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-black"
-                activeClassName="text-indigo-500"
-                onClick={toggleMenu}
+              </p>
+              {selected === "/profile" && (
+                <div className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"></div>
+              )}
+            </div>
+
+            <div
+              className={`${
+                selected === "/about" ? "text-[#3671A8]" : "text-gray-400"
+              } relative h-[30px] flex justify-center`}
+            >
+              <p
+                className="hover:cursor-pointer"
+                onClick={() => navigate("/about")}
               >
-                About Us
-              </NavLink>
-            </li>
-          </ul>
-          <div className="pt-6 lg:pt-0">
-            <a
-              href="/login"
-              className="inline-block py-2 px-4 text-blue-500 font-semibold rounded-lg hover:bg-blue-500 hover:text-white mr-4"
-            >
-              Login
-            </a>
-            <a
-              href="/signup"
-              className="inline-block py-2 px-4 text-white font-semibold rounded-lg bg-blue-500 hover:bg-white hover:text-blue-500 border-2 border-blue-500"
-            >
-              Sign Up
-            </a>
+                About us
+              </p>
+              {selected === "/about" && (
+                <div className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"></div>
+              )}
+            </div>
           </div>
         </div>
-      </nav>
+        <div className="pt-6 lg:pt-0 col-span-2 flex justify-end items-end">
+          <a
+            href="/login"
+            className="inline-block py-2 px-4 text-[#3671A8] font-semibold rounded-lg mr-4 hover:brightness-50"
+          >
+            Log in
+          </a>
+          <a
+            href="/register"
+            className="inline-block py-2 px-8 text-white font-semibold rounded-lg bg-[#3671A8] hover:brightness-110"
+          >
+            Sign Up
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
@@ -101,21 +130,21 @@ function Layout() {
       <Navbar />
       <Outlet />
     </div>
-  )
+  );
 }
 
 export default function RoutesManager() {
   return (
-        <Router>   
-                <Routes>
-                  <Route path="/" element={<Layout />}>
-                    <Route index element={ <Home/> } />
-                    <Route path="about" element={ <About/> } />
-                    <Route path="profile" element={ <Profile/> } />
-                    <Route path="login" element={ <Login/> } />
-                    <Route path="register" element={ <Register/> } />
-                  </Route>
-                </Routes>               
-          </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Route>
+      </Routes>
+    </Router>
   );
-};
+}
