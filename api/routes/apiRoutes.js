@@ -5,6 +5,7 @@ const sleepController = require("../controllers/sleepController");
 const travelController = require("../controllers/travelController");
 const foodController = require("../controllers/foodController");
 const drinkController = require("../controllers/drinkController");
+const mapController = require("../controllers/mapController");
 
 
 // ALL BELOW ROUTE
@@ -25,12 +26,13 @@ const drinkController = require("../controllers/drinkController");
 // router.get("/eat", foodController.getFood);
 // DRINK ROUTES
 // *** get all drink from a location, need to display top 5 or 10 of each ***
-router.get("/drink", drinkController.getDrink);
+// router.get("/drink", drinkController.getDrink);
 // // SAVE SEARCH ROUTES
 // // *** save a search ***
 // router.post("/favorites", searchController.saveSearch);
 // // GET SEARCH ROUTES
 // // *** get all saved searches from a user ***
 // router.get("favorites/:user", searchController.getUserFavorites);
+router.get('/map', mapController.getLocation);
 
 module.exports = router;
