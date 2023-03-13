@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 // HANDLE UNCAUGHTEXCEPTION ERROR AND SHUTTING DOWN APP GRACEFULLY
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXCEPTION 🤯! Shutting down ....');
-  console.log(err.name, err.message);
+  console.log(err.name, err.message, err);
   process.exit(1);
 });
 
@@ -28,7 +28,7 @@ const server = app.listen(port, () => {
 
 // HANDLE UNHANDLEDREJECTION ERROR AND SHUTTING DOWN APP GRACEFULLY
 process.on('unhandledRejection', (err) => {
-  console.log(err.name, err.message);
+  console.log(err.name, err.message, err);
   console.log('UNHANDLED REJECTION 🤯! Shutting down ...');
   // CLOSING SERVER
   server.close(() => {
