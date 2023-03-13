@@ -15,6 +15,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NotFound from "./NotFound";
+import Search from "./Search";
 
 function Footer() {
   return (
@@ -83,7 +84,7 @@ function Navbar() {
 
   return (
     <div>
-      <div className="grid grid-cols-12 items-center px-4 xl:px-40 lg:px-28 md:px-20 px-10">
+      <div className="grid grid-cols-12 items-center px-4 xl:px-40 lg:px-28 md:px-20 px-10 relative z-50">
         <div className="flex items-center col-span-3">
           <NavLink to="/" className="text-indigo-500 font-semibold">
             <img
@@ -197,6 +198,7 @@ export default function RoutesManager() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="search" element={<Search />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

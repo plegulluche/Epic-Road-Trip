@@ -4,10 +4,10 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { useState } from "react";
+import moment from "moment"
+import { useNavigate } from "react-router";
 
-function DatePicker({ onChange, range }) {
-  const [open, setOpen] = useState(false);
-
+function DatePicker({ onChange, range, open, setOpen }) {
   return (
     <Fragment>
       {open && (
@@ -18,25 +18,33 @@ function DatePicker({ onChange, range }) {
           />
         </div>
       )}
-      <div className="hover:cursor-pointer hover:brightness-90">
-        <div
-          className="ml-10 mt-4 w-[70%] h-[35px] bg-gray-100 shadow-xl drop-shadow rounded flex items-center gap-5"
-          onClick={() => setOpen(!open)}
-        >
-          <Calendar width={25} height={20} color={"#3671A8"} className="ml-2" />
-          <p className="text-sm text-gray-500">Pick a range</p>
-        </div>
-      </div>
     </Fragment>
   );
+}
+
+function DateButton({setOpen, open, dates}) {
+  return (
+    <div className="hover:cursor-pointer hover:brightness-90">
+    <div
+      className="ml-10 mt-4 w-[70%] h-[35px] bg-gray-100 shadow-xl drop-shadow rounded flex items-center gap-5"
+      onClick={() => setOpen(!open)}
+    >
+      <Calendar width={25} height={20} color={"#3671A8"} className="ml-2" />
+      {dates.startDate === null || dates.endDate === null ? <p className="text-sm text-gray-500">Pick a range</p>
+      : <p className="text-sm text-gray-500">{moment(dates.startDate).format("DD/MM")} - {moment(dates.endDate).format("DD/MM")}</p>}
+    </div>
+  </div>
+  )
 }
 
 function SearchCard() {
   const [inputs, setInputs] = useState({
     location: "",
-    dates: { startDate: new Date(), endDate: new Date(), key: "selection" },
+    dates: { startDate: null, endDate: null, key: "selection" },
     budget: null,
   });
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
 
   return (
     <div className="absolute w-full lg:bottom-[-50px] bottom-[-150px] lg:h-[150px] h-[400px] sm:px-20">
@@ -71,7 +79,10 @@ function SearchCard() {
             <DatePicker
               onChange={(e) => setInputs({ ...inputs, dates: e })}
               range={inputs.dates}
+              open={open}
+              setOpen={(e) => setOpen(e)}
             />
+            <DateButton open={open} setOpen={(e) => setOpen(e)} dates={inputs.dates}/>
             <div className="hidden lg:flex lg:absolute h-[70%] w-[2px] bg-gray-300 right-0 top-0"></div>
           </div>
           <div className="col-span-1">
@@ -93,7 +104,8 @@ function SearchCard() {
             </div>
           </div>
         </div>
-        <div className="px-16 py-2 w-fit bg-[#3671A8] absolute bottom-[-25px] rounded hover:cursor-pointer hover:brightness-110 hover:scale-105">
+        <div className="px-16 py-2 w-fit bg-[#3671A8] absolute bottom-[-25px] rounded hover:cursor-pointer hover:brightness-110 hover:scale-105"
+          onClick={() => navigate('/search', {state: {inputs}})}>
           <p className="text-white text-lg">Search</p>
         </div>
       </div>
@@ -106,7 +118,7 @@ function Suggestions() {
 
   return (
     <div className="w-full flex flex-col items-center ">
-      <p className="text-gray-600 text-xl mb-5">Suggestions</p>
+      <p className="text-gray-600 text-xl mb-5 mt-5">Suggestions</p>
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 lg:gap-10 gap-5">
         {fakeSuggest.map((el, index) => {
           return (
