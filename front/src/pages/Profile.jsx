@@ -1,7 +1,11 @@
 import { Edit, Pin, PrecisionTool, VerifiedUser } from 'iconoir-react'
 import React from 'react'
+import { useState } from 'react'
 
 function Card1() {
+    const [edit, setEdit] = useState(false)
+    const [favorite, setFavorite] = useState("Singapour")
+
     return (
         <div className='bg-white shadow-xl drop-shadow-xl rounded w-[400px] h-[230px]'>
             <div className='p-5 flex flex-col justify-center gap-5'>
@@ -16,9 +20,20 @@ function Card1() {
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center gap-5'>
                         <Pin />
-                        <p className='text-[#959595] mt-1'>Favorite Destination: <span className='text-black'>Singapour</span></p>
+                        <div className='flex items-center gap-5 mt-1'>
+                            <p className='text-[#959595]'>Favorite Destination: </p>
+                            {edit ?
+                                <div className='flex flex-col gap-3'>
+                                    <input onChange={(e) => setFavorite(e.target.value)} className='border-2 border-gray-400 rounded mr-5 h-[40px]' type="text"/>
+                                    <div className="px-10 py-1 w-fit bg-[#3671A8] rounded hover:cursor-pointer hover:brightness-110 hover:scale-105"  onClick={() => setEdit(!edit)}>
+                                        <p className="text-white text-[10px]">OK</p>
+                                    </div>
+                                </div>    
+                                : <p className='text-black'>{favorite}</p>
+                            }
+                        </div>
                     </div>
-                    <Edit width={20} color={"gray"} className="hover:scale-105 hover:cursor-pointer"/>
+                    <Edit width={20} color={"gray"} className="hover:scale-105 hover:cursor-pointer" onClick={() => setEdit(!edit)}/>
                 </div>
             </div>
         </div> 
