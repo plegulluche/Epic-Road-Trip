@@ -1,5 +1,6 @@
 const userRoutes = require("./routes/userRoutes");
 const apiRoutes = require("./routes/apiRoutes");
+const dotenv = require('dotenv');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
@@ -11,12 +12,13 @@ const endpointsFiles = [
     './routes/userRoutes.js',
     './routes/apiRoutes.js',
 ];
-
+const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
+console.log(hostName)
 const doc = {
     info: {
       title: 'Trip Planner API',
     },
-    host: process.env.WEBSITE_HOSTNAME + '/api',
+    host: hostName + '/api',
     schemes: ['http','https'],
     apis: endpointsFiles,
   };

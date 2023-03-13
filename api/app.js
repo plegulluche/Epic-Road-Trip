@@ -17,11 +17,12 @@ const swaggerAutogen = require("swagger-autogen")();
 const outputFile = "./swagger.json";
 const endpointsFiles = ["./routes/userRoutes.js"];
 
+const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 const doc = {
   info: {
     title: "Trip Planner API",
   },
-  host: process.env.WEBSITE_HOSTNAME + "/api",
+  host: hostName + "/api",
   schemes: ["http", "https"],
   apis: endpointsFiles,
 };
