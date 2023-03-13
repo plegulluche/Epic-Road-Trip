@@ -154,7 +154,7 @@ function IlluCard() {
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full min-h-screen xl:px-40 lg:px-28 md:px-20 px-10">
       <div className="mt-10 w-full h-full relative">
         <IlluCard />
       </div>
