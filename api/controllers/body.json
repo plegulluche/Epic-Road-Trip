@@ -8,7 +8,7 @@
 		"queryLegs": [
 			{
 				"originPlaceId": {
-					"iata": "CDG"
+					"iata": "PAR"
 				},
 				"destinationPlaceId": {
 					"iata": "SYD"
@@ -24,7 +24,7 @@
 					"iata": "SYD"
 				},
 				"destinationPlaceId": {
-					"iata": "CDG"
+					"iata": "PAR"
 				},
 				"date": {
 					"year": 2023,
