@@ -1,5 +1,16 @@
-const express = require("express");
+const sdk = require('api')('@fsq-developer/v1.0#2ehz6bc12len5ghzp');
+const dotenv = require('dotenv');
 
-module.exports.getAbstract = async (req, res) => {
-    return res.send("Hello");
-    }
+dotenv.config({ path: '../config.env' });
+
+const API_KEY = process.env.FOURSQUARE_API_KEY;
+
+
+sdk.auth(API_KEY);
+sdk.placeSearch({near: 'montrouge',categories: '13065'/*restaurant*/})
+  .then(({ data }) => console.log(data))
+  .catch(err => console.error(err));
+
+  
+
+
