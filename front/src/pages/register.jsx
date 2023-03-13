@@ -37,16 +37,16 @@ export default function Login() {
     // Add your login logic here
   };
   return (
-    <div className="flex h-screen">
-      <div className="w-[40%] flex items-center justify-center bg-blue-300">
+    <div className="flex h-screen flex-col md:flex-row">
+      <div className="md:w-[40%] flex items-center justify-center bg-blue-300">
         <div className="w-full h-full flex flex-col items-center justify-center">
-          <img src="/plane.png" alt="Logo" className="h-[55%]" />
+          <img src="/plane.png" alt="Logo" className="h-[55%] md-[400px]" />
           <div className="text-5xl text-[#2D2D2D] font-bold text-center">
             Ready to take off ?
           </div>
         </div>
       </div>
-      <div className="w-[60%] flex flex-col items-center justify-center">
+      <div className="md:w-[60%] flex flex-col items-center justify-center">
         <img
           src="/logo.png"
           alt="Right Panel Logo"
