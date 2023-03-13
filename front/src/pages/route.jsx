@@ -28,8 +28,8 @@ function Navbar() {
 
   return (
     <div>
-      <div className="grid grid-cols-12 items-center px-4">
-        <div className="flex items-center col-span-2">
+      <div className="grid grid-cols-12 items-center px-4 xl:px-40 lg:px-28 md:px-20 px-10">
+        <div className="flex items-center col-span-3">
           <NavLink to="/" className="text-indigo-500 font-semibold">
             <img
               src="NavbarLogo.png"
@@ -56,7 +56,7 @@ function Navbar() {
         <div
           className={`${
             isOpen ? "block" : "hidden"
-          } w-full block flex-grow lg:flex lg:items-center lg:w-auto col-span-8`}
+          } w-full block flex-grow lg:flex lg:items-center lg:w-auto col-span-6`}
         >
           <div className="w-full h-10 flex items-center justify-center gap-8">
             <div
@@ -64,7 +64,7 @@ function Navbar() {
                 selected === "/" ? "text-[#3671A8]" : "text-gray-400"
               } relative h-[30px] flex justify-center`}
             >
-              <p className="hover:cursor-pointer" onClick={() => navigate("/")}>
+              <p className="hover:cursor-pointer font-semibold" onClick={() => navigate("/")}>
                 Home
               </p>
               {selected === "/" && (
@@ -78,7 +78,7 @@ function Navbar() {
               } relative h-[30px] flex justify-center`}
             >
               <p
-                className="hover:cursor-pointer"
+                className="hover:cursor-pointer font-semibold"
                 onClick={() => navigate("/profile")}
               >
                 Profile
@@ -94,7 +94,7 @@ function Navbar() {
               } relative h-[30px] flex justify-center`}
             >
               <p
-                className="hover:cursor-pointer"
+                className="hover:cursor-pointer font-semibold"
                 onClick={() => navigate("/about")}
               >
                 About us
@@ -105,7 +105,7 @@ function Navbar() {
             </div>
           </div>
         </div>
-        <div className="pt-6 lg:pt-0 col-span-2 flex justify-end items-end">
+        <div className="pt-6 lg:pt-0 col-span-3 flex justify-end items-end">
           <a
             href="/login"
             className="inline-block py-2 px-4 text-[#3671A8] font-semibold rounded-lg mr-4 hover:brightness-50"
@@ -126,7 +126,7 @@ function Navbar() {
 
 function Layout() {
   return (
-    <div className="w-full xl:px-40 lg:px-28 md:px-20 px-10 font-sora">
+    <div className={`w-full font-sora`}>
       <Navbar />
       <Outlet />
     </div>
