@@ -13,6 +13,7 @@ import Register from "./register";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import NotFound from "./NotFound";
 
 function Footer() {
   return (
@@ -198,6 +199,7 @@ export default function RoutesManager() {
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path='*' element={<NotFound />}/>
       </Routes>
     </Router>
   );
