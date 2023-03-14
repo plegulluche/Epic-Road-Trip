@@ -1,4 +1,4 @@
-import { Airplane, Edit, List, Map } from 'iconoir-react';
+import { Airplane, Edit, List, Map, Skateboard, Skateboarding } from 'iconoir-react';
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router';
 import { useState } from 'react';
@@ -7,7 +7,7 @@ import GoogleMapReact from 'google-map-react'
 
 function Recap({trip}) {
     return (
-        <div className='w-[230px] bg-[#F1F1F1] p-5 rounded-lg'>
+        <div className='w-[240px] bg-[#F1F1F1] p-5 rounded-lg'>
             <div className='flex justify-between items-center'>
                 <div className='w-[22px]' />
                 <div className='w-10 h-10 bg-white rounded-full flex items-center justify-center'>
@@ -61,7 +61,16 @@ function MapDisplay({lng, lat}) {
 
 function ListDisplay() {
     return (
-        <div>list</div>
+        <div className='w-full h-fit'>
+            <div className='flex gap-5 items-center'>
+                <Skateboarding height={35} width={35} />
+                <p className='text-xl'>Events and Activites</p>
+            </div>
+            <div className='flex gap-5 items-center'>
+                <Skateboarding height={35} width={35} />
+                <p className='text-xl'>Events and Activites</p>
+            </div>
+        </div>
     )
 }
 
