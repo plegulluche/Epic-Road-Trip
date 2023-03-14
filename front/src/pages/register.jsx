@@ -43,7 +43,7 @@ export default function Login() {
   });
 
   return (
-    <div className="flex h-screen flex-col md:flex-row">
+    <div className="flex h-screen flex-col md:flex-row font-sora">
       <div className="md:w-[40%] flex items-center justify-center bg-blue-300">
         <div className="w-full h-full flex flex-col items-center justify-center">
           <img src="/plane.png" alt="Logo" className="h-[55%] md-[400px]" />
