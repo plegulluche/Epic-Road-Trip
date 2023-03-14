@@ -1,34 +1,34 @@
 import React from "react";
 import { useState } from "react";
+import { useGoogleLogin } from '@react-oauth/google';
 
 const CountryDrawer = ({ onSelect }) => {
 
   const handleSelect = (event) => {
     onSelect(event.target.value);
-    
+
   };
 
   return (
     <div>
-        <div className="w-full h-[40px] pl-4 border border-gray-300 rounded-xl p-2">
-          <label htmlFor="country" className="font-sora text-base text-[#787878]">Country:</label>
-          <select className="text-[#787878]" id="country" onChange={handleSelect}>
-            <option value="">Select a country</option>
-            <option value="US">United States</option>
-            <option value="FR">France</option>
-            {/* Add more countries as needed */}
-          </select>
-        </div>
-      
+      <div className="w-full h-[40px] pl-4 border border-gray-300 rounded-xl p-2">
+        <label htmlFor="country" className="font-sora text-base text-[#787878]">Country:</label>
+        <select className="text-[#787878]" id="country" onChange={handleSelect}>
+          <option value="">Select a country</option>
+          <option value="US">United States</option>
+          <option value="FR">France</option>
+          {/* Add more countries as needed */}
+        </select>
+      </div>
+
     </div>
   );
 };
 
-
-
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,6 +36,12 @@ export default function Login() {
     console.log("Password:", password);
     // Add your login logic here
   };
+
+  const registerGoogle = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log('Login Failed:', error)
+  });
+
   return (
     <div className="flex h-screen flex-col md:flex-row">
       <div className="md:w-[40%] flex items-center justify-center bg-blue-300">
@@ -52,6 +58,12 @@ export default function Login() {
           alt="Right Panel Logo"
           className="w-auto h-auto max-h-[220px]"
         />
+        <div>
+          <button
+            className="w-full bg-[#3671A8] text-white font-bold p-2 rounded"
+            onClick={() => registerGoogle()}>Sign up with Google &nbsp;&nbsp;&nbsp;🚀
+          </button>
+        </div>
         <form
           onSubmit={handleSubmit}
           className="rounded p-5 flex flex-col justify-center w-full max-w-[700px]"
