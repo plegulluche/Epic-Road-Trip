@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router';
 import { useState } from 'react';
 import moment from 'moment';
+import GoogleMapReact from 'google-map-react'
 
 function Recap({trip}) {
     return (
@@ -12,9 +13,9 @@ function Recap({trip}) {
                 <div className='w-10 h-10 bg-white rounded-full flex items-center justify-center'>
                     <Airplane />
                 </div>
-                <Edit width={22} color={'#A8A8A8'}/>
+                <Edit className='hover:cursor-pointer hover:scale-105' width={22} color={'#A8A8A8'}/>
             </div>
-            <div className='mt-10 flex flex-col gap-5'>
+            <div className='mt-10 flex flex-col gap-3'>
                 <div className='grid grid-cols-5'>
                     <p className='col-span-2 text-[#8C8C8C]'>From</p>
                     <p className='col-span-3'>{moment(trip.dates.startDate).format("DD/MM")}</p>
@@ -23,7 +24,7 @@ function Recap({trip}) {
                     <p className='col-span-2 text-[#8C8C8C]'>To</p>
                     <p className='col-span-3'>{moment(trip.dates.endDate).format("DD/MM")}</p>
                 </div>
-                <div className='grid grid-cols-5 mb-5'>
+                <div className='grid grid-cols-5 mb-5 mt-3'>
                     <p className='col-span-2 text-[#8C8C8C]'>With</p>
                     <p className='col-span-3'>{trip.budget} €</p>
                 </div>
@@ -32,9 +33,29 @@ function Recap({trip}) {
     )
 }
 
-function MapDisplay() {
+function MapDisplay({lng, lat}) {
+    const AnyReactComponent = ({ text }) => <img style={{position: 'absolute', transform: 'translate(-50%, -100%)'}} width={30} height={30} src="/pin.png"></img>;
+
+    const defaultProps = {
+        center: {
+          lat: lat,
+          lng: lng
+        },
+        zoom: 6
+      };
     return (
-        <div>map</div>
+        <div className='h-[500px] w-[100%] mb-10'>
+            <GoogleMapReact
+                bootstrapURLKeys={{ key: "AIzaSyA3mKtes7tYJIRy65AOV6aQs5YjgsQowz4" }}
+                defaultCenter={defaultProps.center}
+                defaultZoom={defaultProps.zoom}
+            >
+                <AnyReactComponent
+                lat={lat}
+                lng={lng}
+                />
+            </GoogleMapReact>
+        </div>  
     )
 }
 
@@ -82,8 +103,8 @@ export default function Search() {
                     </div>
                 </div>
             </div>
-            <div className='mt-10'>
-                {selected === 'map' && <MapDisplay />}
+            <div className='mt-16'>
+                {selected === 'map' && <MapDisplay lng={116.37} lat={-8.75}/>}
                 {selected === 'list' && <ListDisplay />}
             </div>
         </div>
