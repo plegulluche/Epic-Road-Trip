@@ -68,7 +68,7 @@ export default function Login() {
   });
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen font-sora">
       <div className="w-[40%] flex items-center justify-center bg-blue-300">
         <div className="w-full h-full flex flex-col items-center justify-center">
           <img src="/plane.png" alt="Logo" className="h-[55%]" />
