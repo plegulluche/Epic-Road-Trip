@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { useState } from 'react';
 import moment from 'moment';
 import GoogleMapReact from 'google-map-react'
+import { HomeAltSlimHoriz } from 'iconoir-react';
 
 function Recap({trip}) {
     return (
@@ -66,9 +67,9 @@ function ListDisplay() {
                 <Skateboarding height={35} width={35} />
                 <p className='text-xl'>Events and Activites</p>
             </div>
-            <div className='flex gap-5 items-center'>
-                <Skateboarding height={35} width={35} />
-                <p className='text-xl'>Events and Activites</p>
+            <div className='flex gap-5 items-center mt-5'>
+                <HomeAltSlimHoriz height={32} width={32} />
+                <p className='text-xl'>Accomodations</p>
             </div>
         </div>
     )
