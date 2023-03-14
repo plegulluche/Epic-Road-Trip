@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { PinAlt, Calendar, Dollar } from "iconoir-react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -37,7 +37,7 @@ function DateButton({setOpen, open, dates}) {
   )
 }
 
-function SearchCard() {
+function SearchCard({choice}) {
   const [inputs, setInputs] = useState({
     location: "",
     dates: { startDate: null, endDate: null, key: "selection" },
@@ -45,6 +45,10 @@ function SearchCard() {
   });
   const [open, setOpen] = useState(false);
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (choice) setInputs({...inputs, location: choice})
+  }, [choice])
 
   return (
     <div className="absolute w-full lg:bottom-[-50px] bottom-[-150px] lg:h-[150px] h-[400px] sm:px-20">
@@ -113,11 +117,11 @@ function SearchCard() {
   );
 }
 
-function Suggestions() {
+function Suggestions({onClick}) {
   const fakeSuggest = ["Paris", "London", "Singapour", "Malaga", "Tokyo"];
 
   return (
-    <div className="w-full flex flex-col items-center ">
+    <div className="w-full flex flex-col items-center mb-5">
       <p className="text-gray-600 text-xl mb-5 mt-5">Suggestions</p>
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 lg:gap-10 gap-5">
         {fakeSuggest.map((el, index) => {
@@ -125,6 +129,7 @@ function Suggestions() {
             <div
               key={index}
               className="px-5 py-1 w-fit h-fit border-2 border-gray-300 rounded-lg hover:cursor-pointer hover:brightness-90"
+              onClick={() => onClick(el)}
             >
               <p>{el}</p>
             </div>
@@ -135,7 +140,7 @@ function Suggestions() {
   );
 }
 
-function IlluCard() {
+function IlluCard({choice}) {
   return (
     <Fragment>
       <img src="/card.png" className="w-full h-[500px]" />
@@ -158,20 +163,21 @@ function IlluCard() {
             src="/cloud.png"
           />
         </div>
-        <SearchCard />
+        <SearchCard choice={choice}/>
       </div>
     </Fragment>
   );
 }
 
 export default function Home() {
+  const [choice, setChoice] = useState(undefined)
   return (
     <div className="w-full min-h-screen xl:px-40 lg:px-28 md:px-20 px-10">
       <div className="mt-10 w-full h-full relative">
-        <IlluCard />
+        <IlluCard choice={choice}/>
       </div>
       <div className="lg:mt-[100px] mt-[200px]">
-        <Suggestions />
+        <Suggestions onClick={(choice) => setChoice(choice)}/>
       </div>
     </div>
   );
