@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useGoogleLogin } from '@react-oauth/google';
+import requests from "../requests/Requests";
+import { signUp } from "../requests/axiosMethods/Auth";
 
-const CountryDrawer = ({ onSelect }) => {
+const CountryDrawer = ({ setCountry }) => {
 
   const handleSelect = (event) => {
-    onSelect(event.target.value);
+    setCountry(event.target.value);
 
   };
 
@@ -25,16 +27,27 @@ const CountryDrawer = ({ onSelect }) => {
   );
 };
 
-export default function Login() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [verifyPassword, setVerifyPassword] = useState("");
+  const [country, setCountry] = useState("");
+  const [username, setusername] = useState("");
+  const [lastname, setlastname] = useState("");
   const [user, setUser] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
-    // Add your login logic here
+    console.log("country:", country);
+    signUp(requests.Register, { username, email, password })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   };
 
   const registerGoogle = useGoogleLogin({
@@ -77,22 +90,22 @@ export default function Login() {
             required
             className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
           />
-          <p className="text-gray-500 font-semibold">FirstName</p>
+          <p className="text-gray-500 font-semibold">username</p>
           <input
-            type="password"
-            id="password-input"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            type="text"
+            id="username-input"
+            value={username}
+            onChange={(event) => setusername(event.target.value)}
             required
             className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
           />
-          <CountryDrawer />
-          <p className="text-gray-500 font-semibold">LastName</p>
+          <CountryDrawer setCountry={setCountry} />
+          <p className="text-gray-500 font-semibold">lastname</p>
           <input
-            type="password"
-            id="password-input"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            type="text"
+            id="lastname-input"
+            value={lastname}
+            onChange={(event) => setlastname(event.target.value)}
             required
             className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
           />
@@ -108,9 +121,9 @@ export default function Login() {
           <p className="text-gray-500 font-semibold">Confirm Password</p>
           <input
             type="password"
-            id="password-input"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            id="verifyPassword-input"
+            value={verifyPassword}
+            onChange={(event) => setVerifyPassword(event.target.value)}
             required
             className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
           />
