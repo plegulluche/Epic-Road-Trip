@@ -1,6 +1,7 @@
 import { Edit, Pin, PrecisionTool, VerifiedUser } from 'iconoir-react'
 import React from 'react'
 import { useState } from 'react'
+import {Helmet} from "react-helmet";
 
 function Card1() {
     const [edit, setEdit] = useState(false)
@@ -54,6 +55,11 @@ function Card2() {
 export default function Profile() {
     return (
         <div className='min-h-screen flex flex-col bg-[#F9F9F9]'>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Startek Agency</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
             <div className='flex h-[300px] w-full bg-[#D9D9D9] relative'>
                 <div className='xl:w-[65%] lg:w-[80%] w-[90%] h-fit absolute z-20 lg:bottom-[-220px] bottom-[-280px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center'>
                     <img src="/cloud2.png" className='absolute lg:max-h-[180px] max-h-[100px] lg:top-[-100px] top-[-50px] z-30'></img>

@@ -1,8 +1,14 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 
 export default function NotFound() {
     return (
         <div className='flex flex-col justify-center items-center h-[100vh] bg-[#F0F4FF] z-0 font-sora relative overflow-hidden'>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Startek Agency</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
             <h1 className='text-[110px] z-20 font-bold text-[#717171]'>404</h1>
             <h2 className='text-4xl z-20 text-[#717171]'>Not Found</h2>
             <img className='absolute top-[15%] left-[-10%] w-[40%] z-10 hover:scale-110 transition duration-500' src='/cloud2.png' alt="clouds" />

@@ -1,8 +1,14 @@
 import React from 'react'
+import {Helmet} from "react-helmet";
 
 export const About_us = () => {
   return (
     <div className="flex justify-center xl:px-40 lg:px-28 md:px-20 px-10 h-screen">
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Startek Agency</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="flex flex-col w-[1400px] h-fit gap-y-8 mt-16 ">
         <div className="h-[150px] md:h-[150px] w-full bg-white flex flex-row justify-between">
           <div className="w-2/3 flex justify-start items-center">
