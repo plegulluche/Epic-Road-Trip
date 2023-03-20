@@ -7,17 +7,17 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './.env' });
 
 const app = require('./app');
 
 // DB
 
-// mongoose.connect(
-//     process.env.ATLAS_URI + process.env.DB_NAME,
-//     {useNewUrlParser: true, useUnifiedTopology: true,}
-// ).then(() => console.log('connected to mongodb'))
-// .catch((err) => console.log('Failed to connect mongodb', err));
+mongoose.connect(
+    process.env.ATLAS_URI + process.env.DB_NAME,
+    {useNewUrlParser: true, useUnifiedTopology: true,}
+).then(() => console.log('connected to mongodb'))
+.catch((err) => console.log('Failed to connect mongodb', err));
 
 // START SERVER
 const port = process.env.PORT;
