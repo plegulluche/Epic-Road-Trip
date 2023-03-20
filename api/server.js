@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 // HANDLE UNCAUGHTEXCEPTION ERROR AND SHUTTING DOWN APP GRACEFULLY
