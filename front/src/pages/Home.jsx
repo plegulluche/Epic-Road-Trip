@@ -6,6 +6,7 @@ import { DateRangePicker } from "react-date-range";
 import { useState } from "react";
 import moment from "moment"
 import { useNavigate } from "react-router";
+import {Helmet} from "react-helmet";
 
 function DatePicker({ onChange, range, open, setOpen }) {
   return (
@@ -173,6 +174,11 @@ export default function Home() {
   const [choice, setChoice] = useState(undefined)
   return (
     <div className="w-full min-h-screen xl:px-40 lg:px-28 md:px-20 px-10">
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Startek Agency</title>
+            <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
       <div className="mt-10 w-full h-full relative">
         <IlluCard choice={choice}/>
       </div>
