@@ -5,7 +5,6 @@ import {
   Outlet,
 } from "react-router-dom";
 import Home from "../pages/Home";
-import About from "../pages/About";
 import Profile from "../pages/Profile";
 import Login from "./login";
 import { useEffect, useState } from "react";
@@ -15,10 +14,11 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NotFound from "./NotFound";
 import Search from "./Search";
+import { About_us } from "./About";
 
 function Footer() {
   return (
-    <footer className="bg-[#344966] py-6  h-[140px] flex flex-col justify-between text-white">
+    <footer className="bg-[#344966] py-6 h-[140px] flex flex-col justify-between text-white">
       <div className=" w-full  px-8 sm:px-6  ">
         <nav className=" flex flex-wrap justify-between px-16" aria-label="Footer">
           <div className="px-5 py-2">
@@ -195,7 +195,7 @@ export default function RoutesManager() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
+          <Route path="about" element={<About_us />} />
           <Route path="profile" element={<Profile />} />
           <Route path="search" element={<Search />} />
         </Route>

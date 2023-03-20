@@ -44,7 +44,7 @@ function Card2() {
     return (
         <div className='bg-white shadow-xl p-5 drop-shadow-xl rounded w-[400px] h-[230px] flex flex-col items-center'>
             <p className='text-2xl text-gray-800'>Trips saved</p>
-            <div className="mt-10 px-16 py-2 w-fit bg-[#3671A8] rounded hover:cursor-pointer hover:brightness-110 hover:scale-105">
+            <div className="mt-10 px-16 py-2 w-fit bg-[#3671A8] rounded hover:cursor-pointer hover:brightness-110 hover:scale-105 transition duration-500">
                 <p className="text-white text-lg">See your trips</p>
             </div>
         </div>
