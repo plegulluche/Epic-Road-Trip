@@ -12,17 +12,19 @@ const CountryDrawer = ({ setCountry }) => {
   };
 
   return (
-    <div>
-      <div className="w-full h-[40px] pl-4 border border-gray-300 rounded-xl p-2">
-        <label htmlFor="country" className="font-sora text-base text-[#787878]">Country:</label>
-        <select className="text-[#787878]" id="country" onChange={handleSelect}>
-          <option value="">Select a country</option>
-          <option value="US">United States</option>
-          <option value="FR">France</option>
-          {/* Add more countries as needed */}
+    <div class="mb-5">
+      <p className="text-gray-500 font-semibold">Country</p>
+      <div class="w-full h-10 pl-4 border border-gray-300 rounded-xl">
+        <select class="text-gray-700 bg-transparent w-full h-full" id="country" onchange="handleSelect()">
+          <option value="" disabled selected>Select a country</option>
+          <option value="United States">United States</option>
+          <option value="France">France</option>
+          <option value="Canada">Canada</option>
+          <option value="Germany">Germany</option>
+          <option value="Japan">Japan</option>
+          <option value="England">England</option>
         </select>
       </div>
-
     </div>
   );
 };
@@ -32,8 +34,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
   const [country, setCountry] = useState("");
-  const [username, setusername] = useState("");
-  const [lastname, setlastname] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [user, setUser] = useState([]);
 
   const handleSubmit = (event) => {
@@ -41,7 +43,7 @@ export default function Register() {
     console.log("Email:", email);
     console.log("Password:", password);
     console.log("country:", country);
-    signUp(requests.Register, { username, email, password })
+    signUp(requests.Register, { email, password, firstName, lastName, country })
       .then((response) => {
         console.log(response);
       })
@@ -90,25 +92,25 @@ export default function Register() {
             required
             className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
           />
-          <p className="text-gray-500 font-semibold">username</p>
+          <p className="text-gray-500 font-semibold">First Name</p>
           <input
             type="text"
-            id="username-input"
-            value={username}
-            onChange={(event) => setusername(event.target.value)}
+            id="firstName-input"
+            value={firstName}
+            onChange={(event) => setfirstName(event.target.value)}
+            required
+            className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
+          />
+          <p className="text-gray-500 font-semibold">Last Name</p>
+          <input
+            type="text"
+            id="lastName-input"
+            value={lastName}
+            onChange={(event) => setlastName(event.target.value)}
             required
             className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
           />
           <CountryDrawer setCountry={setCountry} />
-          <p className="text-gray-500 font-semibold">lastname</p>
-          <input
-            type="text"
-            id="lastname-input"
-            value={lastname}
-            onChange={(event) => setlastname(event.target.value)}
-            required
-            className="p-5 rounded-xl h-[30px] border-[1px] border-gray-300 w-full max-w-[700px] text-lg mb-5"
-          />
           <p className="text-gray-500 font-semibold">Password</p>
           <input
             type="password"
