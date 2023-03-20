@@ -108,7 +108,7 @@ function SearchCard({choice}) {
             </div>
           </div>
         </div>
-        <div className="px-16 py-2 w-fit bg-[#3671A8] absolute bottom-[-25px] rounded hover:cursor-pointer hover:brightness-110 hover:scale-105"
+        <div className="px-16 py-2 w-fit bg-[#3671A8] absolute bottom-[-25px] rounded hover:cursor-pointer hover:brightness-110 hover:scale-105 transition duration-500"
           onClick={() => navigate('/search', {state: {inputs}})}>
           <p className="text-white text-lg">Search</p>
         </div>
