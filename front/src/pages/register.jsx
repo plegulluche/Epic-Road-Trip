@@ -7,7 +7,6 @@ const CountryDrawer = ({ onSelect }) => {
 
   const handleSelect = (event) => {
     onSelect(event.target.value);
-
   };
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Helmet} from "react-helmet";
 
-export const About_us = () => {
+export default function AboutUs({}) {
   return (
     <div className="flex justify-center xl:px-40 lg:px-28 md:px-20 px-10 h-screen">
       <Helmet>
