@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useGoogleLogin } from '@react-oauth/google';
+import requests from "../requests/Requests";
+import { signIn } from "../requests/axiosMethods/Auth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,7 +13,13 @@ export default function Login() {
     event.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
-    // Add your login logic here
+    signIn(requests.Login, { email, password })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   };
   const loginGoogle = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),

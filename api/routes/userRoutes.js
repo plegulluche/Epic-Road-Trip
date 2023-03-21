@@ -12,7 +12,7 @@ router.post("/register",
             description: "User to register",
             required: true,
             type: "object",
-            schema: { $username: "string", $email: "string", $password: "string" }
+            schema: { $firstName: "string", $lastName: "string", $email: "string", $password: "string", $country: "string" }
         }
     */
     authController.signUp
