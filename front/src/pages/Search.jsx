@@ -6,6 +6,7 @@ import { HomeAltSlimHoriz } from 'iconoir-react';
 import { Carousel } from '../components/carousel';
 import GoogleMap from '../components/googleMap';
 import TripRecap from '../components/tripRecap';
+import { motion } from "framer-motion";
 
 function ListDisplay() {
     return (
@@ -60,7 +61,12 @@ export default function Search() {
 
     if (!trip) return <div>Loading...</div>
     return (
-        <div className="w-full min-h-screen xl:px-40 lg:px-28 md:px-20 px-10 mt-5 relative overflow-hidden">
+        <motion.div className="w-full min-h-screen xl:px-40 lg:px-28 md:px-20 px-10 mt-5 relative overflow-hidden"
+            initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+        >
             <img src="/plane2.webp" className='absolute opacity-50 right-0 top-[-250px] max-w-[700px] z-10'/>
             <div className='flex gap-10 h-[260px] relative z-50'>
                 <TripRecap trip={trip} />
@@ -91,6 +97,6 @@ export default function Search() {
                 {selected === 'map' && <GoogleMap lng={116.37} lat={-8.75}/>}
                 {selected === 'list' && <ListDisplay />}
             </div>
-        </div>
+        </motion.div>
     )
 }

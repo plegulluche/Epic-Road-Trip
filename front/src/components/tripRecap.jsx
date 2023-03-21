@@ -3,7 +3,7 @@ import { Airplane, Edit } from 'iconoir-react';
 
 export default function TripRecap({trip}) {
     return (
-        <div className='w-[240px] bg-[#F1F1F1] p-5 rounded-lg'>
+        <div className='w-[240px] bg-[#F1F1F1] p-5 rounded-lg drop-shadow-lg'>
             <div className='flex justify-between items-center'>
                 <div className='w-[22px]' />
                 <div className='w-10 h-10 bg-white rounded-full flex items-center justify-center'>
