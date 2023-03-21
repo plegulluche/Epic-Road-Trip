@@ -267,6 +267,31 @@
           }
         }
       }
+    },
+    "/places/details/{placeId}": {
+      "get": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint to fetch details of a place based on its place ID.",
+        "parameters": [
+          {
+            "name": "placeId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The place ID of the place to fetch details for."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "apis": [

@@ -76,4 +76,20 @@ router.get('/',
 
     placesController.getPlaces);
 
+router.get('/details/:placeId', 
+
+    /*
+        #swagger.path = "/places/details/{placeId}"
+        #swagger.tags = ['Places']
+        #swagger.description = 'Endpoint to fetch details of a place based on its place ID.'
+        #swagger.parameters['placeId'] = {
+            in: 'path',
+            description: 'The place ID of the place to fetch details for.',
+            required: true,
+            type: 'string'
+        }
+
+        */
+placesController.fetchPlaceDetails);
+
 module.exports = router;
