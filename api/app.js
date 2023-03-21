@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
 const apiRoutes = require("./routes/apiRoutes");
+const placesRoutes = require("./routes/placesRoutes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -15,7 +16,7 @@ const swaggerDocument = require("./swagger.json");
 const swaggerAutogen = require("swagger-autogen")();
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./routes/userRoutes.js"];
+const endpointsFiles = ["./routes/userRoutes.js", "./routes/placesRoutes.js"];
 
 const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 const doc = {
@@ -56,5 +57,6 @@ app.get("/jwtid", requireAuth, (req, res) => {
 
 app.use("/api/v0/", apiRoutes);
 app.use("/api/auth/", userRoutes);
+app.use("/api/places/", placesRoutes);
 
 module.exports = app;

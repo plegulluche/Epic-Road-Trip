@@ -1,5 +1,3 @@
-const userRoutes = require("./routes/userRoutes");
-const apiRoutes = require("./routes/apiRoutes");
 const dotenv = require('dotenv');
 
 const swaggerUi = require('swagger-ui-express');
@@ -11,6 +9,7 @@ const outputFile = './swagger.json';
 const endpointsFiles = [
     './routes/userRoutes.js',
     './routes/apiRoutes.js',
+    './routes/placesRoutes.js',
 ];
 const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 console.log(hostName)

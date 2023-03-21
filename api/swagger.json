@@ -28,7 +28,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
+                "firstName": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "lastName": {
                   "type": "string",
                   "example": "string"
                 },
@@ -39,12 +43,18 @@
                 "password": {
                   "type": "string",
                   "example": "string"
+                },
+                "country": {
+                  "type": "string",
+                  "example": "string"
                 }
               },
               "required": [
-                "username",
+                "firstName",
+                "lastName",
                 "email",
-                "password"
+                "password",
+                "country"
               ]
             }
           }
@@ -111,9 +121,156 @@
         "parameters": [],
         "responses": {}
       }
+    },
+    "/places": {
+      "get": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint to fetch nearby places based on latitude, longitude, and radius.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "Address of the location to search for nearby places.",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "Latitude of the location to search for nearby places.",
+            "type": "number"
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "Longitude of the location to search for nearby places.",
+            "type": "number"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Radius (in meters) of the area to search for nearby places.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "Types of places to search for.",
+            "required": true,
+            "type": "array"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of nearby places.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "object"
+                    },
+                    "properties": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "string"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "The name of the place."
+                            }
+                          }
+                        },
+                        "address": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "string"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "The address of the place."
+                            }
+                          }
+                        },
+                        "location": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "object"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "The coordinates of the place."
+                            },
+                            "properties": {
+                              "type": "object",
+                              "properties": {
+                                "lat": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "example": "number"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "example": "The latitude of the place."
+                                    }
+                                  }
+                                },
+                                "lng": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "example": "number"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "example": "The longitude of the place."
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to fetch places."
+          }
+        }
+      }
     }
   },
   "apis": [
-    "./routes/userRoutes.js"
+    "./routes/userRoutes.js",
+    "./routes/placesRoutes.js"
   ]
 }

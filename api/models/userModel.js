@@ -63,8 +63,8 @@ userSchema.statics.login = async function(email, password) {
 };
 
 userSchema.statics.createUser = async function(body) {
-    const user = await this.create(body);
-    return user;
+        const user = await this.create(body);
+        return user;
 }
 
 
