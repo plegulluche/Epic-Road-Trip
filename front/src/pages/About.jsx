@@ -1,15 +1,24 @@
 import React from 'react'
 import {Helmet} from "react-helmet";
+import { motion } from "framer-motion";
 
 export default function AboutUs({}) {
   return (
-    <div className="flex justify-center xl:px-40 lg:px-28 md:px-20 px-10 h-screen">
+    <motion.div className="flex justify-center xl:px-40 lg:px-28 md:px-20 px-10 h-screen"
+      initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+      >
       <Helmet>
           <meta charSet="utf-8" />
           <title>Startek Agency</title>
           <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-      <div className="flex flex-col w-[1400px] h-fit gap-y-8 mt-16 ">
+      <motion.div className="flex flex-col w-[1400px] h-fit gap-y-8 mt-16"
+       initial={{ opacity: 0, y: 50 }}
+       animate={{ opacity: 1, y: 0 }}
+       transition={{ duration: 0.5 }}>
         <div className="h-[150px] md:h-[150px] w-full bg-white flex flex-row justify-between">
           <div className="w-2/3 flex justify-start items-center">
             <h1 className="font-sora text-3xl md:text-5xl underline decoration-[#3671A8]">
@@ -51,7 +60,7 @@ export default function AboutUs({}) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

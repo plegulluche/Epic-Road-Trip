@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +58,12 @@ export default function Navbar() {
                   Home
                 </p>
                 {selected === "/" && (
-                  <div className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"></div>
+                  <motion.div
+                  className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"
+                  layoutId="underline"
+                  animate={{ width: ["42px"] }}
+                  transition={{ duration: 0.3 }}
+                />
                 )}
               </div>
   
@@ -73,7 +79,12 @@ export default function Navbar() {
                   Profile
                 </p>
                 {selected === "/profile" && (
-                  <div className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"></div>
+                  <motion.div
+                  className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"
+                  layoutId="underline"
+                  animate={{ width: ["42px"] }}
+                  transition={{ duration: 0.3 }}
+                />
                 )}
               </div>
   
@@ -89,7 +100,12 @@ export default function Navbar() {
                   About us
                 </p>
                 {selected === "/about" && (
-                  <div className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"></div>
+                  <motion.div
+                  className="absolute bottom-0 w-8 mt-1 h-1 bg-[#3671A8]"
+                  layoutId="underline"
+                  animate={{ width: ["42px"] }}
+                  transition={{ duration: 0.3 }}
+                />
                 )}
               </div>
             </div>

@@ -2,6 +2,7 @@ import { Edit, Pin, PrecisionTool, VerifiedUser } from 'iconoir-react'
 import React from 'react'
 import { useState } from 'react'
 import {Helmet} from "react-helmet";
+import { motion } from "framer-motion";
 
 function Card1() {
     const [edit, setEdit] = useState(false)
@@ -54,7 +55,12 @@ function Card2() {
 
 export default function Profile() {
     return (
-        <div className='min-h-screen flex flex-col bg-[#F9F9F9]'>
+        <motion.div className='min-h-screen flex flex-col bg-[#F9F9F9]'
+        initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+        >
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>Startek Agency</title>
@@ -81,6 +87,6 @@ export default function Profile() {
                     <Card2 />
                 </div>
             </div>             
-        </div>
+        </motion.div>
     )
 }
