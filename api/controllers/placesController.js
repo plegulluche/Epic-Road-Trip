@@ -18,6 +18,7 @@ const geocodeAddress = async (address) => {
 };
 
 const fetchPlaces = async (location, radius, type) => {
+  // Get cached places within the specified radius
   const cachedPlaces = await Place.find({
     types: type,
     'geometry.locationGeoJSON': {
@@ -34,28 +35,71 @@ const fetchPlaces = async (location, radius, type) => {
     },
   });
 
-  if (cachedPlaces.length > 0) {
-    console.log('Using cached places');
+  const bufferDistance = 50;
+
+  // Check if there are any cached places beyond the current radius
+  const beyondRadius = await Place.findOne({
+    types: type,
+    'geometry.locationGeoJSON': {
+      $near: {
+        $geometry: {
+          type: 'Point',
+          coordinates: [location.lng, location.lat],
+        },
+        $minDistance: radius - bufferDistance,
+      },
+    },
+    dateModified: {
+      $gte: new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // Check if data is less than 24 hours old
+    },
+  });
+
+  let results = [];
+
+  // Call Google API if there are no cached places beyond the current radius
+  if (!beyondRadius) {
+    console.log("Calling Google API")
+    const response = await client.placesNearby({
+      params: {
+        location,
+        radius,
+        type,
+        key: apiKey,
+      },
+      timeout: 1000,
+    });
+
+    results = response.data.results;
+
+    // Save new places to the database
+    results.forEach(async (result) => {
+      const existingPlace = await Place.findOne({ place_id: result.place_id });
+      if (!existingPlace) {
+        await savePlace(result);
+      }
+    });
+    console.log("results", results.length)
+
+  }
+  else{
+    console.log("No new places found");
     return cachedPlaces;
   }
 
-  const response = await client.placesNearby({
-    params: {
-      location,
-      radius,
-      type,
-      key: apiKey,
-    },
-    timeout: 1000,
-  });
+  // Merge cached places with the new places
+  const allResults = [...cachedPlaces, ...results];
 
-  const results = response.data.results;
-  results.forEach(async (result) => {
-    await savePlace(result);
-  });
+  // Remove duplicates based on place_id
+  const uniqueResults = allResults.reduce((acc, place) => {
+    if (!acc.some((p) => p.place_id === place.place_id)) {
+      acc.push(place);
+    }
+    return acc;
+  }, []);
 
-  return results;
+  return uniqueResults;
 };
+
 
 const savePlaceDetail = async (apiPlaceDetail) => {
   const existingPlaceDetail = await PlaceDetail.findOne({ place_id: apiPlaceDetail.place_id });
@@ -143,9 +187,9 @@ exports.getPlaces = async (req, res) => {
   //create a types array from the query string, comma separated
   const typesArray = types.split(',');
   let location = null;
-  if(address) {
+  if (address) {
     location = await geocodeAddress(address);
-  } else {    
+  } else {
     location = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
   }
   const intRadius = parseInt(radius);
