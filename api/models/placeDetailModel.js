@@ -71,7 +71,15 @@ const placeDetailSchema = new mongoose.Schema({
   editorial_summary: {
     language: String,
     overview: String,
-  }
+  },
+  dateModified: {
+    type: Date,
+  },
+});
+
+placeDetailSchema.pre(['save', 'findOneAndUpdate'], function (next) {
+  this.dateModified = new Date();
+  next();
 });
 
 const PlaceDetail = mongoose.model('PlaceDetail', placeDetailSchema);

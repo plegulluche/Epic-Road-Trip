@@ -159,7 +159,8 @@
             "in": "query",
             "description": "Types of places to search for.",
             "required": true,
-            "type": "array"
+            "type": "array",
+            "example": "restaurant,bar,cafe,tourist_attraction,museum"
           }
         ],
         "responses": {

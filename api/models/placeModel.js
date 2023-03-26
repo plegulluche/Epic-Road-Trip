@@ -7,7 +7,18 @@ const placeSchema = new mongoose.Schema({
       lat: Number,
       lng: Number,
     },
-    viewport: { 
+    locationGeoJSON: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
+    },
+    viewport: {
       northeast: {
         lat: Number,
         lng: Number,
@@ -46,6 +57,15 @@ const placeSchema = new mongoose.Schema({
   types: [String],
   user_ratings_total: Number,
   vicinity: String,
+  dateModified: {
+    type: Date,
+  },
+});
+placeSchema.index({ 'geometry.locationGeoJSON': '2dsphere' });
+
+placeSchema.pre(['save', 'findOneAndUpdate'], function (next) {
+  this.dateModified = new Date();
+  next();
 });
 
 const Place = mongoose.model('Place', placeSchema);

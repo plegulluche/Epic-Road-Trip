@@ -33,6 +33,7 @@ router.get('/',
         description: 'Types of places to search for.',
         required: true,
         type: 'array',
+        example: 'restaurant,bar,cafe,tourist_attraction,museum'
     }
         
         #swagger.responses[200] = {

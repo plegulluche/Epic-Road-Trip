@@ -18,6 +18,27 @@ const geocodeAddress = async (address) => {
 };
 
 const fetchPlaces = async (location, radius, type) => {
+  const cachedPlaces = await Place.find({
+    types: type,
+    'geometry.locationGeoJSON': {
+      $near: {
+        $geometry: {
+          type: 'Point',
+          coordinates: [location.lng, location.lat],
+        },
+        $maxDistance: radius,
+      },
+    },
+    dateModified: {
+      $gte: new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // Check if data is less than 24 hours old
+    },
+  });
+
+  if (cachedPlaces.length > 0) {
+    console.log('Using cached places');
+    return cachedPlaces;
+  }
+
   const response = await client.placesNearby({
     params: {
       location,
@@ -27,7 +48,13 @@ const fetchPlaces = async (location, radius, type) => {
     },
     timeout: 1000,
   });
-  return response.data.results;
+
+  const results = response.data.results;
+  results.forEach(async (result) => {
+    await savePlace(result);
+  });
+
+  return results;
 };
 
 const savePlaceDetail = async (apiPlaceDetail) => {
@@ -62,6 +89,17 @@ exports.fetchPlaceDetails = async (req, res) => {
   const { placeId } = req.params;
 
   try {
+    const cachedPlaceDetail = await PlaceDetail.findOne({
+      place_id: placeId,
+      dateModified: {
+        $gte: new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // Check if data is less than 24 hours old
+      },
+    });
+
+    if (cachedPlaceDetail) {
+      return res.status(200).json(cachedPlaceDetail);
+    }
+
     const response = await client.placeDetails({
       params: {
         place_id: placeId,
@@ -82,10 +120,20 @@ exports.fetchPlaceDetails = async (req, res) => {
 
 
 
+
 const savePlace = async (place) => {
   const existingPlace = await Place.findOne({ place_id: place.place_id });
   if (!existingPlace) {
-    const newPlace = new Place(place);
+    const newPlace = new Place({
+      ...place,
+      geometry: {
+        ...place.geometry,
+        locationGeoJSON: {
+          type: 'Point',
+          coordinates: [place.geometry.location.lng, place.geometry.location.lat],
+        },
+      },
+    });
     await newPlace.save();
   }
 };
