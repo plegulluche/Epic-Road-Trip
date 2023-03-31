@@ -10,6 +10,10 @@ const userRoutes = require("./routes/userRoutes");
 const drinkRoutes = require("./routes/drinkRoutes");
 const eatRoutes = require("./routes/eatRoutes");
 const sleepRoutes = require("./routes/sleepRoutes");
+const travelRoutes = require("./routes/travelRoutes");
+const enjoyRoutes = require("./routes/enjoyRoutes");
+const placeDetailRoutes = require("./routes/placeDetailRoutes");
+const searchParametersRoutes = require("./routes/searchParametersRoutes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -17,7 +21,14 @@ const swaggerDocument = require("./swagger.json");
 const swaggerAutogen = require("swagger-autogen")();
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./routes/userRoutes.js", "./routes/drinkRoutes.js", "./routes/eatRoutes.js", "./routes/sleepRoutes.js"];
+const endpointsFiles = ["./routes/userRoutes.js", 
+                        "./routes/drinkRoutes.js", 
+                        "./routes/eatRoutes.js", 
+                        "./routes/sleepRoutes.js",
+                        "./routes/travelRoutes.js",
+                        "./routes/enjoyRoutes.js",
+                        "./routes/placeDetailRoutes.js",
+                        "./routes/searchParametersRoutes.js"];
 
 const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 const doc = {
@@ -60,5 +71,9 @@ app.use("/api/auth/", userRoutes);
 app.use("/api/drinks/", drinkRoutes);
 app.use("/api/eats/", eatRoutes);
 app.use("/api/sleep/", sleepRoutes);
+app.use("/api/travel/", travelRoutes);
+app.use("/api/enjoy/", enjoyRoutes);
+app.use("/api/place-details/", placeDetailRoutes);
+app.use("/api/search-parameters/", searchParametersRoutes);
 
 module.exports = app;
