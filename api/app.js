@@ -7,8 +7,9 @@ require("./config/db");
 const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
-const apiRoutes = require("./routes/apiRoutes");
-const placesRoutes = require("./routes/placesRoutes");
+const drinkRoutes = require("./routes/drinkRoutes");
+const eatRoutes = require("./routes/eatRoutes");
+const sleepRoutes = require("./routes/sleepRoutes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -16,7 +17,7 @@ const swaggerDocument = require("./swagger.json");
 const swaggerAutogen = require("swagger-autogen")();
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./routes/userRoutes.js", "./routes/placesRoutes.js"];
+const endpointsFiles = ["./routes/userRoutes.js", "./routes/drinkRoutes.js", "./routes/eatRoutes.js", "./routes/sleepRoutes.js"];
 
 const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 const doc = {
@@ -55,8 +56,9 @@ app.get("/jwtid", requireAuth, (req, res) => {
 
 // ROUTES
 
-app.use("/api/v0/", apiRoutes);
 app.use("/api/auth/", userRoutes);
-app.use("/api/places/", placesRoutes);
+app.use("/api/drinks/", drinkRoutes);
+app.use("/api/eats/", eatRoutes);
+app.use("/api/sleep/", sleepRoutes);
 
 module.exports = app;

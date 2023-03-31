@@ -122,166 +122,231 @@
         "responses": {}
       }
     },
-    "/places": {
+    "/drinks/": {
       "get": {
         "tags": [
-          "Places"
+          "Drink"
         ],
-        "description": "Endpoint to fetch nearby places based on latitude, longitude, and radius.",
+        "summary": "Get bars",
+        "description": "",
         "parameters": [
           {
-            "name": "address",
+            "name": "open_now",
             "in": "query",
-            "description": "Address of the location to search for nearby places.",
-            "type": "string"
+            "description": "Whether to search for bars that are open now",
+            "required": false,
+            "type": "boolean"
           },
           {
-            "name": "latitude",
+            "name": "min_price",
             "in": "query",
-            "description": "Latitude of the location to search for nearby places.",
+            "description": "Minimum price of bars to search for (1-4)",
+            "required": false,
             "type": "number"
           },
           {
-            "name": "longitude",
+            "name": "max_price",
             "in": "query",
-            "description": "Longitude of the location to search for nearby places.",
+            "description": "Maximum price of bars to search for (1-4)",
+            "required": false,
             "type": "number"
           },
           {
             "name": "radius",
             "in": "query",
-            "description": "Radius (in meters) of the area to search for nearby places.",
-            "required": true,
-            "type": "integer"
+            "description": "Radius of search in meters",
+            "required": false,
+            "type": "number"
           },
           {
-            "name": "types",
+            "name": "location",
             "in": "query",
-            "description": "Types of places to search for.",
-            "required": true,
+            "description": "Location to search for bars",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "default": "13003",
+            "description": "Categories of bars to search for. See codes below:  All Bar (13003),  Apres Ski Bar (13004),  Beach Bar (13005),  Beer Bar (13006),  Beer Garden (13007),  Champagne Bar (13008),  Cocktail Bar (13009),  Dive Bar (13010),  Gay Bar (13011),  Hookah Bar (13012),  Hotel Bar (13013),  Ice Bar (13014),  Karaoke Bar (13015),  Lounge (13016),  Piano Bar (13017),  Pub (13018),  Rooftop Bar (13019),  Sake Bar (13020),  Speakeasy (13021),  Sports Bar (13022),  Tiki Bar (13023),  Whisky Bar (13024),  Wine Bar (13025)  ",
+            "required": false,
             "type": "array",
-            "example": "restaurant,bar,cafe,tourist_attraction,museum"
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of location to search for bars",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "description": "Longitude of location to search for bars",
+            "required": false,
+            "type": "number"
           }
         ],
         "responses": {
           "200": {
-            "description": "A list of nearby places.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "array"
-                },
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "object"
-                    },
-                    "properties": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "example": "string"
-                            },
-                            "description": {
-                              "type": "string",
-                              "example": "The name of the place."
-                            }
-                          }
-                        },
-                        "address": {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "example": "string"
-                            },
-                            "description": {
-                              "type": "string",
-                              "example": "The address of the place."
-                            }
-                          }
-                        },
-                        "location": {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "example": "object"
-                            },
-                            "description": {
-                              "type": "string",
-                              "example": "The coordinates of the place."
-                            },
-                            "properties": {
-                              "type": "object",
-                              "properties": {
-                                "lat": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "type": "string",
-                                      "example": "number"
-                                    },
-                                    "description": {
-                                      "type": "string",
-                                      "example": "The latitude of the place."
-                                    }
-                                  }
-                                },
-                                "lng": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "type": "string",
-                                      "example": "number"
-                                    },
-                                    "description": {
-                                      "type": "string",
-                                      "example": "The longitude of the place."
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
+            "description": "OK"
           },
           "500": {
-            "description": "Failed to fetch places."
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/places/details/{placeId}": {
+    "/eats/": {
       "get": {
         "tags": [
-          "Places"
+          "Eat"
         ],
-        "description": "Endpoint to fetch details of a place based on its place ID.",
+        "summary": "Get restaurants",
+        "description": "",
         "parameters": [
           {
-            "name": "placeId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The place ID of the place to fetch details for."
+            "name": "open_now",
+            "in": "query",
+            "description": "Whether to search for restaurants that are open now",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "min_price",
+            "in": "query",
+            "description": "Minimum price of restaurants to search for (1-4)",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "max_price",
+            "in": "query",
+            "description": "Maximum price of restaurants to search for (1-4)",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Radius of search in meters",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location to search for restaurants",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "default": "13065",
+            "description": "Categories of restaurants to search for.   See codes below:\nAll (13065),\nFrench Restaurant (13148),\nItalian Restaurant (13236),  \nJapanese Restaurant (13263),\nMediterranean Restaurant (13302),\nMiddle Eastern Restaurant (13309),  \nPizza Place (13064),\nSeafood Restaurant (13338),\nSteakhouse (13383),\nThai Restaurant (13352),  \nTurkish Restaurant (13356),  \nAmerican Restaurant (13146),\nAsian Restaurant (13147),\nBarbecue Restaurant (13149),  \nBistro (13150),\nBurger Joint (13151),\nCafé (13152),\nChinese Restaurant (13153),  \nCoffee Shop (13154),\nDeli / Bodega (13155),\nDiner (13156),\nFast Food Restaurant (13157),  \nFood Court (13158),\nFood Truck (13159),\nGreek Restaurant (13160),\nIndian Restaurant (13161),  \nIrish Pub (13162),\nKorean Restaurant (13163),\nLatin American Restaurant (13164),  \nMexican Restaurant (13165),\nNew American Restaurant (13166),\nPakistani Restaurant (13167),  \nPizza Place (13168),\nPub (13169),\nRestaurant (13170),\nSandwich Place (13171),  \nSushi Restaurant (13172),\nTapas Restaurant (13173),\nTea Room (13174),\nVegetarian / Vegan Restaurant (13175),  ",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of location to search for restaurants",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "description": "Longitude of location to search for restaurants",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/sleep/": {
+      "get": {
+        "tags": [
+          "Sleep"
+        ],
+        "summary": "Get lodging",
+        "description": "",
+        "parameters": [
+          {
+            "name": "open_now",
+            "in": "query",
+            "description": "Whether to search for lodging that are open now",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "min_price",
+            "in": "query",
+            "description": "Minimum price of lodging to search for (1-4)",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "max_price",
+            "in": "query",
+            "description": "Maximum price of lodging to search for (1-4)",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Radius of search in meters",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location to search for lodging",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "default": "19009",
+            "description": "Categories of bars to search for. See codes below:  All Lodging (19009),  Bed & Breakfast (19010),  Boarding House (19011),  Cottage/Cabin (19012),  Hostel (19013),  Hotel (19014),  Inn (19015),  Lodge (19016),  Motel (19017),  Resort (19018),  Vacation Rental (19019)",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of location to search for lodging",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "description": "Longitude of location to search for lodging",
+            "required": false,
+            "type": "number"
           }
         ],
         "responses": {
@@ -297,6 +362,8 @@
   },
   "apis": [
     "./routes/userRoutes.js",
-    "./routes/placesRoutes.js"
+    "./routes/drinkRoutes.js",
+    "./routes/eatRoutes.js",
+    "./routes/sleepRoutes.js"
   ]
 }
