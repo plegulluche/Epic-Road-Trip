@@ -32,6 +32,7 @@ const placeDetailsSchema = new mongoose.Schema({
       longitude: Number,
     },
   },
+  static_map_url: String,
   link: String,
   location: {
     address: String,
