@@ -646,6 +646,439 @@
           }
         }
       }
+    },
+    "/directions": {
+      "post": {
+        "tags": [
+          "Directions"
+        ],
+        "summary": "Get route coordinates",
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Get route coordinates",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "origin": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "lng": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                },
+                "destination": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "lng": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                },
+                "waypoints": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "lat": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "lng": {
+                        "type": "number",
+                        "example": 0
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "origin",
+                "destination",
+                "waypoints"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Directions"
+        ],
+        "summary": "Get directions history by user",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/directions/saved/": {
+      "get": {
+        "tags": [
+          "Directions"
+        ],
+        "summary": "Get saved directions by user",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/events/": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get events",
+        "description": "",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location to search for events",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of location to search for events",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "description": "Longitude of location to search for events",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Radius of search in meters, 500m by default",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "within",
+            "in": "query",
+            "description": "Do not use",
+            "type": "string"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query",
+            "type": "string"
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Event ids",
+            "type": "string"
+          },
+          {
+            "name": "like",
+            "in": "query",
+            "description": "Event ids",
+            "type": "string"
+          },
+          {
+            "name": "labels",
+            "in": "query",
+            "description": "Event labels",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Event country",
+            "type": "string"
+          },
+          {
+            "name": "start_around.origin",
+            "in": "query",
+            "description": "Event start_around.origin",
+            "type": "string"
+          },
+          {
+            "name": "start_around.offset",
+            "in": "query",
+            "description": "Event start_around.offset",
+            "type": "string"
+          },
+          {
+            "name": "start_around.scale",
+            "in": "query",
+            "description": "Event start_around.scale",
+            "type": "string"
+          },
+          {
+            "name": "start_around.decay",
+            "in": "query",
+            "description": "Event start_around.decay",
+            "type": "number"
+          },
+          {
+            "name": "end_around.origin",
+            "in": "query",
+            "description": "Event end_around.origin",
+            "type": "string"
+          },
+          {
+            "name": "end_around.offset",
+            "in": "query",
+            "description": "Event end_around.offset",
+            "type": "string"
+          },
+          {
+            "name": "end_around.scale",
+            "in": "query",
+            "description": "Event end_around.scale",
+            "type": "string"
+          },
+          {
+            "name": "end_around.decay",
+            "in": "query",
+            "description": "Event end_around.decay",
+            "type": "number"
+          },
+          {
+            "name": "location_around.origin",
+            "in": "query",
+            "description": "Event location_around.origin",
+            "type": "string"
+          },
+          {
+            "name": "location_around.offset",
+            "in": "query",
+            "description": "Event location_around.offset",
+            "type": "string"
+          },
+          {
+            "name": "location_around.scale",
+            "in": "query",
+            "description": "Event location_around.scale",
+            "type": "string"
+          },
+          {
+            "name": "location_around.decay",
+            "in": "query",
+            "description": "Event location_around.decay",
+            "type": "number"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Event start",
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "Event end",
+            "type": "string"
+          },
+          {
+            "name": "updated",
+            "in": "query",
+            "description": "Event updated",
+            "type": "string"
+          },
+          {
+            "name": "rank_level",
+            "in": "query",
+            "description": "Event rank_level",
+            "type": "string"
+          },
+          {
+            "name": "local_rank_level",
+            "in": "query",
+            "description": "Event local_rank_level",
+            "type": "string"
+          },
+          {
+            "name": "aviation_rank_level",
+            "in": "query",
+            "description": "Event aviation_rank_level",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "in": "query",
+            "description": "Event duration",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "   --Attendee categories--\n   community\n   concerts\n   conferences\n   festivals\n   performing-arts\n   sports\n   expos\n     --Non-attendee categories--\n   academic\n   daylight-savings\n   observances\n   politics\n   public-holidays\n   school-holidays\n     --Unscheduled categories--\n   airport-delays\n   disasters\n   health-warnings\n   severe-weather\n   terror\n   ",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Event limit",
+            "type": "number"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Event offset",
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "   id,   title,   start,   end,   rank,   local_rank,   aviation_rank,   category,   duration,   country,   labels,   -id,   -title,   -start,   -end,   -rank,   -local_rank,   -aviation_rank,   -category,   -duration,   -country,   -labels   ",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/events/recommend": {
+      "get": {
+        "tags": [
+          "Event"
+        ],
+        "description": "Get recommended events",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of location to search for events",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "description": "Longitude of location to search for events",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location to search for events",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/event-favorites": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add event to favorites, ",
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Add event to favorites",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "eventFavorites": {
+                  "type": "string",
+                  "example": "string"
+                }
+              },
+              "required": [
+                "eventFavorites"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get event favorites by user",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "apis": [
@@ -656,6 +1089,9 @@
     "./routes/travelRoutes.js",
     "./routes/enjoyRoutes.js",
     "./routes/placeDetailRoutes.js",
-    "./routes/searchParametersRoutes.js"
+    "./routes/searchParametersRoutes.js",
+    "./routes/directionsRoutes.js",
+    "./routes/eventRoutes.js",
+    "./routes/userParameterRoutes.js"
   ]
 }

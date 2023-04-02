@@ -14,6 +14,9 @@ const travelRoutes = require("./routes/travelRoutes");
 const enjoyRoutes = require("./routes/enjoyRoutes");
 const placeDetailRoutes = require("./routes/placeDetailRoutes");
 const searchParametersRoutes = require("./routes/searchParametersRoutes");
+const directionsRoutes = require("./routes/directionsRoutes");
+const eventRoutes = require("./routes/eventRoutes");
+const userParameterRoutes = require("./routes/userParameterRoutes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -28,7 +31,10 @@ const endpointsFiles = ["./routes/userRoutes.js",
                         "./routes/travelRoutes.js",
                         "./routes/enjoyRoutes.js",
                         "./routes/placeDetailRoutes.js",
-                        "./routes/searchParametersRoutes.js"];
+                        "./routes/searchParametersRoutes.js",
+                        "./routes/directionsRoutes.js",
+                        "./routes/eventRoutes.js",
+                        "./routes/userParameterRoutes.js"];
 
 const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 const doc = {
@@ -75,5 +81,8 @@ app.use("/api/travel/", travelRoutes);
 app.use("/api/enjoy/", enjoyRoutes);
 app.use("/api/place-details/", placeDetailRoutes);
 app.use("/api/search-parameters/", searchParametersRoutes);
+app.use("/api/directions/", directionsRoutes);
+app.use("/api/events/", eventRoutes);
+app.use("/api/user/", userParameterRoutes);
 
 module.exports = app;

@@ -35,7 +35,11 @@ const userSchema = new mongoose.Schema(
             require: true,
             minLength: 1,
             maxLenght: 100,
-        }
+        },
+        eventFavorites: {
+            type: String,
+            require: false,
+        },
 
     },
     {

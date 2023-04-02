@@ -15,6 +15,9 @@ const endpointsFiles = [
     './routes/enjoyRoutes.js',
     './routes/placeDetailRoutes.js',
     './routes/searchParametersRoutes.js',
+    './routes/directionsRoutes.js',
+    './routes/eventRoutes.js',
+    './routes/userParameterRoutes.js',
 ];
 const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 console.log(hostName)

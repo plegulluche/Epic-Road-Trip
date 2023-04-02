@@ -41,4 +41,5 @@ router.get("/logout",
     authController.signOut
 );
 
+
 module.exports = router;

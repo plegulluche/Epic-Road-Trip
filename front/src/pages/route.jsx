@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Profile from "../pages/Profile";
 import Login from "./login";
+import MapComponent from "../components/MapComponent";
 import { useEffect, useState } from "react";
 import Register from "./register";
 import { NavLink } from "react-router-dom";
@@ -200,6 +201,7 @@ export default function RoutesManager() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path='*' element={<NotFound />}/>
+        <Route path="map" element={<MapComponent />} />
       </Routes>
     </Router>
   );
