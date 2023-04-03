@@ -34,7 +34,7 @@ const HideIcon = () => {
 const CountryDrawer = ({ setCountry, isCountryValid }) => {
   const handleSelect = (event) => {
     setCountry(event.target.value);
-  };
+    }
 
   return (
     <div className="mb-5">
