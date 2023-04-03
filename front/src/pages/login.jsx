@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useGoogleLogin } from '@react-oauth/google';
+import {Helmet} from "react-helmet";
 import requests from "../requests/Requests";
 import { signIn } from "../requests/axiosMethods/Auth";
 
@@ -68,7 +69,12 @@ export default function Login() {
   });
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen font-sora">
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Startek Agency</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="w-[40%] flex items-center justify-center bg-blue-300">
         <div className="w-full h-full flex flex-col items-center justify-center">
           <img src="/plane.png" alt="Logo" className="h-[55%]" />

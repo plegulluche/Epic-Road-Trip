@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useGoogleLogin } from '@react-oauth/google';
 import requests from "../requests/Requests";
 import { signUp } from "../requests/axiosMethods/Auth";
+import {Helmet} from "react-helmet";
 
 const ErrorMessage = ({ message }) => {
   if (!message) {
@@ -33,7 +34,7 @@ const HideIcon = () => {
 const CountryDrawer = ({ setCountry, isCountryValid }) => {
   const handleSelect = (event) => {
     setCountry(event.target.value);
-  };
+    }
 
   return (
     <div className="mb-5">
@@ -132,7 +133,12 @@ export default function Register() {
   });
 
   return (
-    <div className="flex h-screen flex-col md:flex-row">
+    <div className="flex h-screen flex-col md:flex-row font-sora">
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Startek Agency</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="md:w-[40%] flex items-center justify-center bg-blue-300">
         <div className="w-full h-full flex flex-col items-center justify-center">
           <img src="/plane.png" alt="Logo" className="h-[55%] md-[400px]" />
