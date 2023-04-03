@@ -169,7 +169,7 @@
             "name": "category",
             "in": "query",
             "default": "13003",
-            "description": "Categories of bars to search for. See codes below:   All Bar (13003),   Apres Ski Bar (13004),   Beach Bar (13005),   Beer Bar (13006),   Beer Garden (13007),   Champagne Bar (13008),   Cocktail Bar (13009),   Dive Bar (13010),   Gay Bar (13011),   Hookah Bar (13012),   Hotel Bar (13013),   Ice Bar (13014),   Karaoke Bar (13015),   Lounge (13016),   Piano Bar (13017),   Pub (13018),   Rooftop Bar (13019),   Sake Bar (13020),   Speakeasy (13021),   Sports Bar (13022),   Tiki Bar (13023),   Whisky Bar (13024),   Wine Bar (13025)   ",
+            "description": "Categories of bars to search for. See codes below:  All Bar (13003),  Apres Ski Bar (13004),  Beach Bar (13005),  Beer Bar (13006),  Beer Garden (13007),  Champagne Bar (13008),  Cocktail Bar (13009),  Dive Bar (13010),  Gay Bar (13011),  Hookah Bar (13012),  Hotel Bar (13013),  Ice Bar (13014),  Karaoke Bar (13015),  Lounge (13016),  Piano Bar (13017),  Pub (13018),  Rooftop Bar (13019),  Sake Bar (13020),  Speakeasy (13021),  Sports Bar (13022),  Tiki Bar (13023),  Whisky Bar (13024),  Wine Bar (13025)  ",
             "required": false,
             "type": "array",
             "items": {
@@ -248,7 +248,7 @@
             "name": "category",
             "in": "query",
             "default": "13065",
-            "description": "Categories of restaurants to search for.    See codes below:\nAll (13065),\nFrench Restaurant (13148),\nItalian Restaurant (13236),   \nJapanese Restaurant (13263),\nMediterranean Restaurant (13302),\nMiddle Eastern Restaurant (13309),   \nPizza Place (13064),\nSeafood Restaurant (13338),\nSteakhouse (13383),\nThai Restaurant (13352),   \nTurkish Restaurant (13356),   \nAmerican Restaurant (13146),\nAsian Restaurant (13147),\nBarbecue Restaurant (13149),   \nBistro (13150),\nBurger Joint (13151),\nCafé (13152),\nChinese Restaurant (13153),   \nCoffee Shop (13154),\nDeli / Bodega (13155),\nDiner (13156),\nFast Food Restaurant (13157),   \nFood Court (13158),\nFood Truck (13159),\nGreek Restaurant (13160),\nIndian Restaurant (13161),   \nIrish Pub (13162),\nKorean Restaurant (13163),\nLatin American Restaurant (13164),   \nMexican Restaurant (13165),\nNew American Restaurant (13166),\nPakistani Restaurant (13167),   \nPizza Place (13168),\nPub (13169),\nRestaurant (13170),\nSandwich Place (13171),   \nSushi Restaurant (13172),\nTapas Restaurant (13173),\nTea Room (13174),\nVegetarian / Vegan Restaurant (13175),   ",
+            "description": "Categories of restaurants to search for.   See codes below:\nAll (13065),\nFrench Restaurant (13148),\nItalian Restaurant (13236),  \nJapanese Restaurant (13263),\nMediterranean Restaurant (13302),\nMiddle Eastern Restaurant (13309),  \nPizza Place (13064),\nSeafood Restaurant (13338),\nSteakhouse (13383),\nThai Restaurant (13352),  \nTurkish Restaurant (13356),  \nAmerican Restaurant (13146),\nAsian Restaurant (13147),\nBarbecue Restaurant (13149),  \nBistro (13150),\nBurger Joint (13151),\nCafé (13152),\nChinese Restaurant (13153),  \nCoffee Shop (13154),\nDeli / Bodega (13155),\nDiner (13156),\nFast Food Restaurant (13157),  \nFood Court (13158),\nFood Truck (13159),\nGreek Restaurant (13160),\nIndian Restaurant (13161),  \nIrish Pub (13162),\nKorean Restaurant (13163),\nLatin American Restaurant (13164),  \nMexican Restaurant (13165),\nNew American Restaurant (13166),\nPakistani Restaurant (13167),  \nPizza Place (13168),\nPub (13169),\nRestaurant (13170),\nSandwich Place (13171),  \nSushi Restaurant (13172),\nTapas Restaurant (13173),\nTea Room (13174),\nVegetarian / Vegan Restaurant (13175),  ",
             "required": false,
             "type": "array",
             "items": {
@@ -327,7 +327,7 @@
             "name": "category",
             "in": "query",
             "default": "19009",
-            "description": "Categories of bars to search for. See codes below:   All Lodging (19009),   Bed & Breakfast (19010),   Boarding House (19011),   Cottage/Cabin (19012),   Hostel (19013),   Hotel (19014),   Inn (19015),   Lodge (19016),   Motel (19017),   Resort (19018),   Vacation Rental (19019)",
+            "description": "Categories of bars to search for. See codes below:  All Lodging (19009),  Bed & Breakfast (19010),  Boarding House (19011),  Cottage/Cabin (19012),  Hostel (19013),  Hotel (19014),  Inn (19015),  Lodge (19016),  Motel (19017),  Resort (19018),  Vacation Rental (19019)",
             "required": false,
             "type": "array",
             "items": {
@@ -406,7 +406,7 @@
             "name": "category",
             "in": "query",
             "default": "19000",
-            "description": "Categories of transportation service and transport hub to search for.  See codes below:\nAll (19000)\nBaggage Locker (19001)\nBike Rental (19002)\nTransportation Service (19051),\nCharter Bus (19052),\nLimo / Chauffeur (19053),  \nPublic Transportation (19054),\nTransport Hub (19030),\nAirport (19031),\nAirfield (19032),  \nAirport Food Court (19033),\nAirport Gate (19034),\nAirport Lounge (19035),\nAirport Service (19036),  \nAirport Terminal (19037),\nAirport Tram Station (19038),\nBaggage Claim (19039),  \nInternational Airport (19040),\nPrivate Airport (19041),\nBus Station (19042),\nBus Stop (19043),  \nHeliport (19044),\nMarine Terminal (19045),\nMetro Station (19046),\nRail Station (19047),  \nRental Car Location (19048),\nTaxi Stand (19049),\nTram Station (19050)",
+            "description": "Categories of transportation service and transport hub to search for. See codes below:\nAll (19000)\nBaggage Locker (19001)\nBike Rental (19002)\nTransportation Service (19051),\nCharter Bus (19052),\nLimo / Chauffeur (19053), \nPublic Transportation (19054),\nTransport Hub (19030),\nAirport (19031),\nAirfield (19032), \nAirport Food Court (19033),\nAirport Gate (19034),\nAirport Lounge (19035),\nAirport Service (19036), \nAirport Terminal (19037),\nAirport Tram Station (19038),\nBaggage Claim (19039), \nInternational Airport (19040),\nPrivate Airport (19041),\nBus Station (19042),\nBus Stop (19043), \nHeliport (19044),\nMarine Terminal (19045),\nMetro Station (19046),\nRail Station (19047), \nRental Car Location (19048),\nTaxi Stand (19049),\nTram Station (19050)",
             "required": false,
             "type": "array",
             "items": {
@@ -485,7 +485,7 @@
             "name": "category",
             "in": "query",
             "default": "14000",
-            "description": "Categories of events to search for.  See codes below:\nAll (14000),\nConference (14001),\nConvention (14002),  \nEntertainment Event (14003),\nFestival (14004),\nMusic Festival (14005),\nParade (14006),  \nSporting Event (14007),\nLine / Queue (14008),\nMarketplace (14009),\nChristmas Market (14010),  \nStoop Sale (14011),\nStreet Fair (14012),\nStreet Food Gathering (14013),\nTrade Fair (14014),  \nOther Event (14015)",
+            "description": "Categories of events to search for. See codes below:\nAll (14000),\nConference (14001),\nConvention (14002), \nEntertainment Event (14003),\nFestival (14004),\nMusic Festival (14005),\nParade (14006), \nSporting Event (14007),\nLine / Queue (14008),\nMarketplace (14009),\nChristmas Market (14010), \nStoop Sale (14011),\nStreet Fair (14012),\nStreet Food Gathering (14013),\nTrade Fair (14014), \nOther Event (14015)",
             "required": false,
             "type": "array",
             "items": {
@@ -609,13 +609,6 @@
             "items": {
               "type": "string"
             }
-          },
-          {
-            "name": "user",
-            "in": "query",
-            "description": "User to save search parameters for",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -947,7 +940,7 @@
           {
             "name": "category",
             "in": "query",
-            "description": "   --Attendee categories--\n   community\n   concerts\n   conferences\n   festivals\n   performing-arts\n   sports\n   expos\n     --Non-attendee categories--\n   academic\n   daylight-savings\n   observances\n   politics\n   public-holidays\n   school-holidays\n     --Unscheduled categories--\n   airport-delays\n   disasters\n   health-warnings\n   severe-weather\n   terror\n   ",
+            "description": "  --Attendee categories--\n  community\n  concerts\n  conferences\n  festivals\n  performing-arts\n  sports\n  expos\n   --Non-attendee categories--\n  academic\n  daylight-savings\n  observances\n  politics\n  public-holidays\n  school-holidays\n   --Unscheduled categories--\n  airport-delays\n  disasters\n  health-warnings\n  severe-weather\n  terror\n  ",
             "type": "array",
             "items": {
               "type": "string"
@@ -968,7 +961,7 @@
           {
             "name": "sort",
             "in": "query",
-            "description": "   id,   title,   start,   end,   rank,   local_rank,   aviation_rank,   category,   duration,   country,   labels,   -id,   -title,   -start,   -end,   -rank,   -local_rank,   -aviation_rank,   -category,   -duration,   -country,   -labels   ",
+            "description": "  id,  title,  start,  end,  rank,  local_rank,  aviation_rank,  category,  duration,  country,  labels,  -id,  -title,  -start,  -end,  -rank,  -local_rank,  -aviation_rank,  -category,  -duration,  -country,  -labels  ",
             "type": "array",
             "items": {
               "type": "string"
