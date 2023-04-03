@@ -69,13 +69,6 @@ router.post('/',
         type: 'string',
       }
       }
-      #swagger.parameters['user'] = {
-          "name": "user",
-          "in": "query",
-          "description": "User to save search parameters for",
-          "required": true,
-          "type": "string"
-      },
     }
   */
     requireAuth,
