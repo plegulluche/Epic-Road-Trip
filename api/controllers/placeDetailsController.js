@@ -1,6 +1,6 @@
 // controllers/placeDetailsController.js
 const { Blob } = require('buffer');
-const { uploadImageToAzureBlob } = require('../utils/azureBlob.utils');
+const { uploadMapImageToAzureBlob, uploadPlaceImagesToAzureBlob } = require('../utils/azureBlob.utils');
 const axios = require('axios');
 const sdk = require('api')('@fsq-developer/v1.0#2ehz6bc12len5ghzp');
 const PlaceDetails = require('../models/placeDetailModel');
@@ -42,9 +42,23 @@ const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
       });
 
     const name = placeDetails.name.replace(/\s/g, '');
-    const { blobPromise, blobName, blobUrl, containerName } = uploadImageToAzureBlob(image, name);
+    const { blobPromise, blobName, blobUrl, containerName } = uploadMapImageToAzureBlob(image, name);
     await blobPromise;
     placeDetails.static_map_url = blobUrl +  containerName + '/' + blobName;
+
+
+    //blobArray is an array of images in arraybuffer format, name is the name of the place
+    // the purpose of this function is to upload all the images in the array to azure blob storage
+    // each image will be named with the name of the place and a number to differentiate them
+    // the function will return an array of promises, each promise will resolve to the url of the image
+    // the urls will be used to update the place document in the database
+
+    //https://api.foursquare.com/v3/places/{fsq_id}/photos
+    
+    
+
+
+
     await placeDetails.save();
     return placeDetails;
   }
