@@ -1,78 +1,54 @@
+// models/placeDetails.js
+
 const mongoose = require('mongoose');
 
-const placeDetailSchema = new mongoose.Schema({
-  place_id: {
+const placeDetailsSchema = new mongoose.Schema({
+  fsq_id: {
     type: String,
     required: true,
-    unique: true,
+  },
+  categories: [
+    {
+      id: Number,
+      name: String,
+      icon: {
+        prefix: String,
+        suffix: String,
+      },
+    },
+  ],
+  chains: [String],
+  geocodes: {
+    drop_off: {
+      latitude: Number,
+      longitude: Number,
+    },
+    main: {
+      latitude: Number,
+      longitude: Number,
+    },
+    roof: {
+      latitude: Number,
+      longitude: Number,
+    },
+  },
+  static_map_url: String,
+  link: String,
+  location: {
+    address: String,
+    admin_region: String,
+    country: String,
+    cross_street: String,
+    formatted_address: String,
+    locality: String,
+    postcode: String,
+    region: String,
   },
   name: String,
-  address: String,
-  rating: Number,
-  formatted_address: String,
-  formatted_phone_number: String,
-  international_phone_number: String,
-  url: String,
-  website: String,
-  types: [String],
-  opening_hours: {
-    open_now: Boolean,
-    periods: [
-      {
-        close: {
-          day: Number,
-          time: String,
-        },
-        open: {
-          day: Number,
-          time: String,
-        },
-      },
-    ],
-    weekday_text: [String],
-  },
-  geometry: {
-    location: {
-      lat: Number,
-      lng: Number,
-    },
-    viewport: {
-      northeast: {
-        lat: Number,
-        lng: Number,
-      },
-      southwest: {
-        lat: Number,
-        lng: Number,
-      },
-    },
-  },
-  photos: [
-    {
-      height: Number,
-      width: Number,
-      photo_reference: String,
-      html_attributions: [String],
-    },
-  ],
-  reviews: [
-    {
-      author_name: String,
-      author_url: String,
-      language: String,
-      profile_photo_url: String,
-      rating: Number,
-      relative_time_description: String,
-      text: String,
-      time: Number,
-    },
-  ],
-  utc_offset: Number,
-  editorial_summary: {
-    language: String,
-    overview: String,
-  }
+  related_places: mongoose.Schema.Types.Mixed,
+  timezone: String,
 });
 
-const PlaceDetail = mongoose.model('PlaceDetail', placeDetailSchema);
-module.exports = PlaceDetail;
+const PlaceDetails = mongoose.model('PlaceDetails', placeDetailsSchema);
+
+module.exports = PlaceDetails;

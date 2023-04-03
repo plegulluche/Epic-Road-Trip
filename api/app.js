@@ -7,8 +7,16 @@ require("./config/db");
 const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
-const apiRoutes = require("./routes/apiRoutes");
-const placesRoutes = require("./routes/placesRoutes");
+const drinkRoutes = require("./routes/drinkRoutes");
+const eatRoutes = require("./routes/eatRoutes");
+const sleepRoutes = require("./routes/sleepRoutes");
+const travelRoutes = require("./routes/travelRoutes");
+const enjoyRoutes = require("./routes/enjoyRoutes");
+const placeDetailRoutes = require("./routes/placeDetailRoutes");
+const searchParametersRoutes = require("./routes/searchParametersRoutes");
+const directionsRoutes = require("./routes/directionsRoutes");
+const eventRoutes = require("./routes/eventRoutes");
+const userParameterRoutes = require("./routes/userParameterRoutes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -16,7 +24,17 @@ const swaggerDocument = require("./swagger.json");
 const swaggerAutogen = require("swagger-autogen")();
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./routes/userRoutes.js", "./routes/placesRoutes.js"];
+const endpointsFiles = ["./routes/userRoutes.js", 
+                        "./routes/drinkRoutes.js", 
+                        "./routes/eatRoutes.js", 
+                        "./routes/sleepRoutes.js",
+                        "./routes/travelRoutes.js",
+                        "./routes/enjoyRoutes.js",
+                        "./routes/placeDetailRoutes.js",
+                        "./routes/searchParametersRoutes.js",
+                        "./routes/directionsRoutes.js",
+                        "./routes/eventRoutes.js",
+                        "./routes/userParameterRoutes.js"];
 
 const hostName = dotenv.config().parsed.WEBSITE_HOSTNAME;
 const doc = {
@@ -55,8 +73,16 @@ app.get("/jwtid", requireAuth, (req, res) => {
 
 // ROUTES
 
-app.use("/api/v0/", apiRoutes);
 app.use("/api/auth/", userRoutes);
-app.use("/api/places/", placesRoutes);
+app.use("/api/drinks/", drinkRoutes);
+app.use("/api/eats/", eatRoutes);
+app.use("/api/sleep/", sleepRoutes);
+app.use("/api/travel/", travelRoutes);
+app.use("/api/enjoy/", enjoyRoutes);
+app.use("/api/place-details/", placeDetailRoutes);
+app.use("/api/search-parameters/", searchParametersRoutes);
+app.use("/api/directions/", directionsRoutes);
+app.use("/api/events/", eventRoutes);
+app.use("/api/user/", userParameterRoutes);
 
 module.exports = app;
