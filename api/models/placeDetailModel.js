@@ -33,11 +33,7 @@ const placeDetailsSchema = new mongoose.Schema({
     },
   },
   static_map_url: String,
-  place_images: [
-    {
-      url: String,
-    },
-  ],
+  place_images: [String],
   link: String,
   location: {
     address: String,

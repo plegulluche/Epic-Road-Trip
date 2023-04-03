@@ -30,7 +30,7 @@ const getBlobName = originalName => {
     // Use a random number to generate a unique file name, 
     // removing "0." from the start of the string.
     const identifier = Math.random().toString().replace(/0\./, '');
-    return `${identifier}-${originalName}.jpg`;
+    return `${originalName}-${identifier}.jpg`;
 };
 
 function uploadMapImageToAzureBlob(blob, name) {
@@ -60,10 +60,10 @@ function uploadMapImageToAzureBlob(blob, name) {
 
 function uploadPlaceImagesToAzureBlob(blobArray, name) {
     try {
-        const containerClient = blobServiceClient.getContainerClient(placeImagesContainer);
+        const containerClientPlaceImages = blobServiceClient.getContainerClient(placeImagesContainer);
         //if container does not exist, create it
-        const created = async () => await containerClient.createIfNotExists();
-        created();
+        const createdPlaceImages = async () => await containerClientPlaceImages.createIfNotExists();
+        createdPlaceImages();
 
     } catch (error) {
         console.log(error);
@@ -86,19 +86,21 @@ function uploadPlaceImagesToAzureBlob(blobArray, name) {
     // the function will return an array of promises, each promise will resolve to the url of the image
     // the urls will be used to update the place document in the database
 
-    const blobUrl = blobServiceClient.url;
-    const containerName = placeImagesContainer;
-    const blobPromises = [];
+    const blobUrlPlaceImages = blobServiceClient.url;
+    const containerNamePlaceImages = placeImagesContainer;
+    const blobPromisesArray = [];
+    const blobNameArray = [];
     for (let i = 0; i < blobArray.length; i++) {
-        const blobName = `${name}-${i}.jpg`;
+        const blobName = getBlobName(`${i}-${name}`);
+        blobNameArray.push(blobName);
         const blobPromise = new Promise((resolve, reject) => {
             const blockBlobClient = blobServiceClient.getContainerClient(placeImagesContainer).getBlockBlobClient(blobName);
             const uploadBlobResponse = blockBlobClient.uploadData(blobArray[i], { blobHTTPHeaders: { blobContentType: "image/jpeg" } });
             resolve(uploadBlobResponse);
         });
-        blobPromises.push(blobPromise);
+        blobPromisesArray.push(blobPromise);
     }
-    return { blobPromises, blobUrl, containerName };
+    return { blobPromisesArray, blobNameArray, blobUrlPlaceImages, containerNamePlaceImages };
 }
 
 
