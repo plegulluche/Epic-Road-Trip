@@ -4,6 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import {Helmet} from "react-helmet";
 import requests from "../requests/Requests";
 import { signIn } from "../requests/axiosMethods/Auth";
+import { useNavigate } from "react-router";
 
 const ErrorMessage = ({ message }) => {
   if (!message) {
@@ -31,7 +32,8 @@ const HideIcon = () => {
   )
 }
 
-export default function Login() {
+export default function Login(props) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -51,6 +53,10 @@ export default function Login() {
     signIn(requests.Login, { email, password })
       .then((response) => {
         console.log(response);
+        const connected = 'true';
+        localStorage.setItem('connected', connected);
+        props.setIsLoggedIn(true);
+        navigate('/');
       })
       .catch((error) => {
         console.log(error)

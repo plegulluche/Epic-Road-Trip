@@ -4,6 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import requests from "../requests/Requests";
 import { signUp } from "../requests/axiosMethods/Auth";
 import {Helmet} from "react-helmet";
+import { useNavigate } from "react-router";
 
 const ErrorMessage = ({ message }) => {
   if (!message) {
@@ -61,7 +62,8 @@ const CountryDrawer = ({ setCountry, isCountryValid }) => {
   );
 };
 
-export default function Register() {
+export default function Register(props) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
@@ -117,6 +119,10 @@ export default function Register() {
     signUp(requests.Register, { email, password, firstName, lastName, country })
       .then((response) => {
         console.log(response);
+        const connected = 'true';
+        localStorage.setItem('connected', connected);
+        props.setIsLoggedIn(true);
+        navigate('/')
       })
       .catch((error) => {
         console.log(error);
