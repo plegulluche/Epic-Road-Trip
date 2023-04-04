@@ -1,7 +1,11 @@
 const sdk = require('api')('@fsq-developer/v1.0#2ehz6bc12len5ghzp');
 require('dotenv').config();
 const { Client } = require('@googlemaps/google-maps-services-js');
+const PlaceDetails = require('../models/placeDetailModel');
 const client = new Client({});
+
+//this is dumb
+const {getPlaceDetailsFromAPIAndSave} = require('./placeDetailsController');
 
 const googleApiKey = process.env.GOOGLE_API_KEY;
 
@@ -28,7 +32,7 @@ const findRecord = async (req, res, type) => {
     const searchQuery = {
         ll: `${req.query.lat ?? 0},${req.query.lng ?? 0}`,
         radius: '1000',
-        limit: '50',
+        limit: '10',
     };
     if (req.query.open_now) {
         searchQuery.open_now = req.query.open_now;
@@ -49,12 +53,28 @@ const findRecord = async (req, res, type) => {
     if (req.query.category) {
         searchQuery.categories = req.query.category;
     }
-    console.log(searchQuery)
+    
+
+
     sdk
         .placeSearch(searchQuery)
-        .then(({ data }) => {
-            const venues = data;
-            return res.status(200).json(venues);
+        .then(async ({ data }) => { // <-- Make sure to add async here
+            let venues = data.results;
+            
+            for (const venue of venues) { // Use for...of loop instead of forEach
+                const placeDetails = await getPlaceDetailsFromAPIAndSave(venue.fsq_id);
+                console.log(placeDetails);
+                const {place_images, ...rest} = placeDetails;
+                //send only first three images
+                venue.place_images = place_images.slice(0, 3);
+            }
+            
+            //reconstruct the response
+            const response = {
+                ...data,
+                results: venues,
+            };
+            return res.status(200).json(response);
         })
         .catch((err) => {
             console.error('Error fetching data from Foursquare API:', err);

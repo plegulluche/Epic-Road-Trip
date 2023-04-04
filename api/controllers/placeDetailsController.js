@@ -19,6 +19,12 @@ const getStaticMapUrl = ({ latitude, longitude, zoom = 16, width = 400, height =
 };
 
 const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
+  let cachedPlaceDetails = await PlaceDetails.findOne({ fsq_id });
+
+  if (cachedPlaceDetails) {
+    return cachedPlaceDetails;
+  }
+
   const { data } = await sdk.placeDetails({ fsq_id });
 
   const placeDetails = new PlaceDetails(data);
@@ -44,7 +50,7 @@ const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
     const name = placeDetails.name.replace(/\s/g, '');
     const { blobPromise, blobName, blobUrl, containerName } = uploadMapImageToAzureBlob(image, name);
     await blobPromise;
-    placeDetails.static_map_url = blobUrl +  containerName + '/' + blobName;
+    placeDetails.static_map_url = blobUrl + containerName + '/' + blobName;
 
 
     //blobArray is an array of images in arraybuffer format, name is the name of the place
@@ -54,7 +60,7 @@ const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
     // the urls will be used to update the place document in the database
 
     //https://api.foursquare.com/v3/places/{fsq_id}/photos
-    
+
     const imageData = await sdk.placePhotos({ fsq_id });
     const urlArray = imageData.data.map((data) => {
       return data.prefix + 'original' + data.suffix;
@@ -91,15 +97,8 @@ const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
 const fetchAndSavePlaceDetails = async (req, res) => {
   try {
     const { fsq_id } = req.params;
-    let placeDetails = await PlaceDetails.findOne({ fsq_id });
-    if (!placeDetails) {
-      placeDetails = await getPlaceDetailsFromAPIAndSave(fsq_id);
-
-      //append the image 
-      res.status(200).json({ message: 'PlaceDetails fetched from Foursquare API and saved successfully!', placeDetails });
-    } else {
-      res.status(200).json({ message: 'PlaceDetails fetched from database!', placeDetails });
-    }
+    const placeDetails = await getPlaceDetailsFromAPIAndSave(fsq_id);
+    res.status(200).json({ message: 'PlaceDetails fetched from Foursquare API and saved successfully!', placeDetails });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'An error occurred while fetching and saving PlaceDetails.' });
@@ -108,4 +107,5 @@ const fetchAndSavePlaceDetails = async (req, res) => {
 
 module.exports = {
   fetchAndSavePlaceDetails,
+  getPlaceDetailsFromAPIAndSave
 };
