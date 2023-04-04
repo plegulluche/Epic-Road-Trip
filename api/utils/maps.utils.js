@@ -1,6 +1,21 @@
-const express = require("express");
 const axios = require("axios");
+require('dotenv').config();
+const { Client } = require('@googlemaps/google-maps-services-js');
+const client = new Client({});
 
+const googleApiKey = process.env.GOOGLE_API_KEY;
+
+module.exports.geocodeAddress = async (address) => {
+    const response = await client.geocode({
+        params: {
+            address,
+            key: googleApiKey,
+        },
+    });
+
+    const { lat, lng } = response.data.results[0].geometry.location;
+    return { lat, lng };
+};
 
 //Improve : add a function to get the location from the user's IP address
 //          add a function to get the location from the user's browser

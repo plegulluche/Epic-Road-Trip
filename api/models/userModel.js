@@ -40,6 +40,26 @@ const userSchema = new mongoose.Schema(
             type: String,
             require: false,
         },
+        address: {
+            text: {
+                type: String,
+                require: false,
+            },
+            coordinates: {
+                lat: {
+                    type: Number,
+                    require: false,
+                },
+                lng: {
+                    type: Number,
+                    require: false,
+                },
+            },
+        },
+        favoriteDestination: {
+            type: String,
+            require: false,
+        },
 
     },
     {
