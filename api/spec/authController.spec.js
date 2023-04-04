@@ -1,7 +1,10 @@
 const { signUp, signIn, signOut } = require(".././controllers/authController");
 const UserModel = require(".././models/userModel");
 const httpMocks = require("node-mocks-http");
+const dotenv = require("dotenv");
 const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
+
+dotenv.config()
 
 const validUser = {
   firstName: "testuser",
@@ -29,7 +32,7 @@ describe("AuthController", () => {
   it("should successfully sign up a user", async () => {
     const req = httpMocks.createRequest({
       method: "POST",
-      url: "/api/auth/signup",
+      url: "/api/auth/register",
       body: validUser,
     });
 
@@ -44,8 +47,7 @@ describe("AuthController", () => {
 
       expect(res.statusCode).toBe(200);
       expect(data).toHaveProperty("user");
-    } catch (error) {
-    }
+    } catch (error) {}
   });
 
   it("should successfully sign in a user", async () => {
@@ -53,7 +55,7 @@ describe("AuthController", () => {
 
     const req = httpMocks.createRequest({
       method: "POST",
-      url: "/api/auth/signin",
+      url: "/api/auth/login",
       body: {
         email: validUser.email,
         password: validUser.password,
