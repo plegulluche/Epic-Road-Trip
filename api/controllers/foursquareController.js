@@ -63,7 +63,7 @@ const findRecord = async (req, res, type) => {
             
             for (const venue of venues) { // Use for...of loop instead of forEach
                 const placeDetails = await getPlaceDetailsFromAPIAndSave(venue.fsq_id);
-                console.log(placeDetails);
+                if(!placeDetails) continue;
                 const {place_images, ...rest} = placeDetails;
                 //send only first three images
                 venue.place_images = place_images.slice(0, 3);
