@@ -5,12 +5,13 @@ const SearchParameters = require('../models/searchParameters');
 const saveSearchParameters = async (req, res) => {
     try {
       // Assuming the user ID is available in req.user._id
+      console.log(req.user)
       const { _id: userId } = req.user;
       const searchParameters = new SearchParameters({ ...req.query, user: userId });
       await searchParameters.save();
   
       res.status(200).json({ message: 'Search parameters saved successfully!', searchParameters });
-    } catch (error) {
+    } catch (error) { 
       console.error(error);
       res.status(500).json({ message: 'An error occurred while saving search parameters.' });
     }
