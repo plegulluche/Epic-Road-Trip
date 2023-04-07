@@ -4,8 +4,7 @@
   "description": "baxckend app",
   "main": "server.js",
   "scripts": {
-    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
-    "test": "jasmine",
+    "test": "jest",
     "start": "nodemon -r dotenv/config server.js dotenv_config_path=.env",
     "swagger-autogen": "node ./swagger.js"
   },
@@ -47,8 +46,9 @@
     "karma-cli": "^2.0.0",
     "karma-coverage": "^2.2.0",
     "karma-jasmine": "^5.1.0",
-    "mongodb-memory-server": "^8.12.1",
+    "mongodb-memory-server": "^8.12.2",
     "node-fetch": "^2.6.9",
-    "node-mocks-http": "^1.12.2"
+    "node-mocks-http": "^1.12.2",
+    "supertest": "^6.3.3"
   }
 }

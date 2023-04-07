@@ -1,5 +1,5 @@
-const { signUp, signIn, signOut } = require(".././controllers/authController");
-const UserModel = require(".././models/userModel");
+const { signUp, signIn, signOut } = require("../controllers/authController");
+const UserModel = require("../models/userModel");
 const httpMocks = require("node-mocks-http");
 const dotenv = require("dotenv");
 const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
@@ -14,7 +14,6 @@ const validUser = {
   password: "testpassword",
 };
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000; // 10 seconds
 
 describe("AuthController", () => {
   beforeAll(async () => {
@@ -68,7 +67,7 @@ describe("AuthController", () => {
     const data = JSON.parse(res._getData());
 
     expect(res.statusCode).toBe(200);
-    expect(data).withContext("user");
+    expect(data).toEqual({ user: expect.any(String) });
   });
 
   it("should successfully sign out a user", async () => {
@@ -85,3 +84,5 @@ describe("AuthController", () => {
     expect(res._getRedirectUrl()).toBe("/");
   });
 });
+
+

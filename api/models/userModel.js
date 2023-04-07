@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
             maxLenght: 100,
         },
         eventFavorites: {
-            type: String,
+            type: [String],
             require: false,
         },
         address: {
@@ -68,11 +68,19 @@ const userSchema = new mongoose.Schema(
 );
 
 // play function before save into DB
-userSchema.pre("save", async function(next) {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+// userSchema.pre("save", async function(next) {
+//     const salt = await bcrypt.genSalt();
+//     this.password = await bcrypt.hash(this.password, salt);
+//     next();
+// });
+
+userSchema.pre("save", async function (next) {
+    if (this.password) {
+      const salt = await bcrypt.genSalt();
+      this.password = await bcrypt.hash(this.password, salt);
+    }
     next();
-});
+  });
 
 userSchema.statics.login = async function(email, password) {
     const user = await this.findOne({ email });
