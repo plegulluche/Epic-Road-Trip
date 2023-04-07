@@ -24,7 +24,7 @@ const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
   if (cachedPlaceDetails) {
     return cachedPlaceDetails;
   }
-
+ 
   const { data } = await sdk.placeDetails({ fsq_id });
 
   const placeDetails = new PlaceDetails(data);
@@ -61,11 +61,17 @@ const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
 
     //https://api.foursquare.com/v3/places/{fsq_id}/photos
 
-    const imageData = await sdk.placePhotos({ fsq_id });
+    let imageData;
+    try {
+      imageData = await sdk.placePhotos({ fsq_id });
+    }
+    catch (error) {
+      console.log(error);
+      return null;
+    }
     const urlArray = imageData.data.map((data) => {
       return data.prefix + 'original' + data.suffix;
     });
-    console.log(urlArray);
     const blobArray = await Promise.all(urlArray.map(async (url) => {
       const image = await axios.get(url,
         { responseType: 'arraybuffer' })
@@ -78,7 +84,6 @@ const getPlaceDetailsFromAPIAndSave = async (fsq_id) => {
     }));
 
     const { blobPromisesArray, blobNameArray, blobUrlPlaceImages, containerNamePlaceImages } = uploadPlaceImagesToAzureBlob(blobArray, name);
-    console.log(blobPromisesArray, blobNameArray, blobUrlPlaceImages, containerNamePlaceImages)
     await Promise.all(blobPromisesArray);
     placeDetails.place_images = blobNameArray.map((blobName) => {
       return blobUrlPlaceImages + containerNamePlaceImages + '/' + blobName;
