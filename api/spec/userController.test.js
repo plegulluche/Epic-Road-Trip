@@ -90,6 +90,28 @@ describe("userController", () => {
     const getAddress = await request(app).get("/getAddress");
 
     expect(getAddress.status).toBe(200);
-    expect(getAddress.body).toMatchObject({ address})
+    expect(getAddress.body).toMatchObject({ address });
+  });
+
+  test("Save profile and get profile", async () => {
+    const favoriteDestination = "Paris";
+
+    // Test save profile
+    const saveProfile = await request(app).post("/saveProfile").send({
+      favoriteDestination,
+    });
+
+    expect(saveProfile.status).toBe(200);
+    expect(saveProfile.body).toMatchObject({
+      message: "Profile saved successfully!",
+      favoriteDestination,
+    });
+
+    // Test getProfile
+
+    const getProfile = await request(app).get("/getProfile");
+
+    expect(getProfile.status).toBe(200);
+    expect(getProfile.body).toMatchObject({});
   });
 });
