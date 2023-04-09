@@ -4,9 +4,11 @@ const mongoose = require("mongoose");
 const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
 const UserModel = require("../models/userModel");
 const userController = require("../controllers/userController");
+const { geocodeAddress } = require(".././utils/maps.utils");
 
 const testUserId = new mongoose.Types.ObjectId(); // Generate a valid ObjectId
 
+jest.mock(".././utils/maps.utils");
 
 const app = express();
 app.use(express.json());
@@ -65,5 +67,29 @@ describe("userController", () => {
     expect(getRes.body).toMatchObject({ eventFavorites });
   });
 
-  // Add more tests for the other functions here
+  test("saveAdress and getAdress", async () => {
+    const mockGeocodeAddress = jest
+      .fn()
+      .mockResolvedValue({ lat: 133, lng: 896 });
+    geocodeAddress.mockImplementation(mockGeocodeAddress);
+    const address = {
+      text: "une adresse de test",
+    };
+    // Test saveAdress
+    const saveAddress = await request(app).post("/saveAddress").send({
+      address: address.text,
+    });
+
+    expect(saveAddress.status).toBe(200);
+    expect(saveAddress.body).toMatchObject({
+      message: "Address saved successfully!",
+      address: address.text,
+    });
+
+    // Test getAddress
+    const getAddress = await request(app).get("/getAddress");
+
+    expect(getAddress.status).toBe(200);
+    expect(getAddress.body).toMatchObject({ address})
+  });
 });
