@@ -2,10 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const request = require("supertest");
 
-const UserModel = require('../models/userModel')
-const SearchModel = require(".././models/searchParameters");
-const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
-const searchParameterController = require("../controllers/searchParametersController");
+const UserModel = require('../../models/userModel')
+const SearchModel = require("../../models/searchParameters");
+const { connectInMemoryDB, closeInMemoryDB } = require("../helpers/mongoHelper");
+const searchParameterController = require("../../controllers/searchParametersController");
 
 // Creating a valid user id for tests
 const testUserId = new mongoose.Types.ObjectId();

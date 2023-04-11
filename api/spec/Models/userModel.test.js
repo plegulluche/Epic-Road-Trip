@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const UserModel = require("../models/userModel");
-const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
+const UserModel = require("../../models/userModel");
+const { connectInMemoryDB, closeInMemoryDB } = require("../helpers/mongoHelper");
 
 describe("UserModel", () => {
   beforeAll(async () => {

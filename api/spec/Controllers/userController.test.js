@@ -1,14 +1,17 @@
 const request = require("supertest");
 const express = require("express");
 const mongoose = require("mongoose");
-const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
-const UserModel = require("../models/userModel");
-const userController = require("../controllers/userController");
-const { geocodeAddress } = require(".././utils/maps.utils");
+const {
+  connectInMemoryDB,
+  closeInMemoryDB,
+} = require("../helpers/mongoHelper");
+const UserModel = require("../../models/userModel");
+const userController = require("../../controllers/userController");
+const { geocodeAddress } = require("../../utils/maps.utils");
 
 const testUserId = new mongoose.Types.ObjectId(); // Generate a valid ObjectId
 
-jest.mock(".././utils/maps.utils");
+jest.mock("../.././utils/maps.utils");
 
 const app = express();
 app.use(express.json());

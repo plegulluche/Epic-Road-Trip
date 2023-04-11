@@ -1,8 +1,8 @@
-const { signUp, signIn, signOut } = require("../controllers/authController");
-const UserModel = require("../models/userModel");
+const { signUp, signIn, signOut } = require("../../controllers/authController");
+const UserModel = require("../../models/userModel");
 const httpMocks = require("node-mocks-http");
 const dotenv = require("dotenv");
-const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
+const { connectInMemoryDB, closeInMemoryDB } = require("../helpers/mongoHelper");
 
 dotenv.config()
 

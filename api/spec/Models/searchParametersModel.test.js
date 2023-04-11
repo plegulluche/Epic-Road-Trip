@@ -1,6 +1,6 @@
-const { connectInMemoryDB, closeInMemoryDB } = require("./helpers/mongoHelper");
-const UserModel = require("../models/userModel");
-const SearchParameters = require("../models/searchParameters");
+const { connectInMemoryDB, closeInMemoryDB } = require(".././helpers/mongoHelper");
+const UserModel = require("../../models/userModel");
+const SearchParameters = require("../../models/searchParameters");
 
 describe("SearchParameters Model", () => {
   beforeAll(async () => {

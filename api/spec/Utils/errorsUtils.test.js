@@ -1,5 +1,5 @@
 // spec/errorUtils.test.js
-const { signUpErrors, signInErrors } = require("../utils/errors.utils");
+const { signUpErrors, signInErrors } = require("../../utils/errors.utils");
 
 describe("Error Utils", () => {
   describe("signUpErrors", () => {
