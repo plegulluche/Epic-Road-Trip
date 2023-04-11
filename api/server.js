@@ -12,14 +12,6 @@ dotenv.config({ path: './.env' });
 
 const app = require('./app');
 
-// DB
-
-mongoose.connect(
-    process.env.ATLAS_URI + process.env.DB_NAME,
-    {useNewUrlParser: true, useUnifiedTopology: true,}
-).then(() => console.log('connected to mongodb'))
-.catch((err) => console.log('Failed to connect mongodb', err));
-
 // START SERVER
 const port = process.env.PORT;
 const server = app.listen(port, () => {
