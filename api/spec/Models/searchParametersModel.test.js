@@ -34,7 +34,7 @@ describe("SearchParameters Model", () => {
       min_price: 1,
       max_price: 4,
       radius: 5000,
-      category: ["restaurant", "bar"],
+      category: "restaurant",
       user: user._id,
     });
 
@@ -50,7 +50,7 @@ describe("SearchParameters Model", () => {
     expect(savedParameters.min_price).toEqual(1);
     expect(savedParameters.max_price).toEqual(4);
     expect(savedParameters.radius).toEqual(5000);
-    expect(savedParameters.category).toEqual(["restaurant", "bar"]);
+    expect(savedParameters.category).toEqual("restaurant");
   });
 
   it("should get search parameters by user ID using getByUserId static method", async () => {
@@ -71,7 +71,7 @@ describe("SearchParameters Model", () => {
       min_price: 1,
       max_price: 4,
       radius: 5000,
-      category: ["restaurant", "bar"],
+      category: "restaurant",
       user: user._id,
     });
 
@@ -85,6 +85,6 @@ describe("SearchParameters Model", () => {
     expect(fetchedParameters.min_price).toEqual(1);
     expect(fetchedParameters.max_price).toEqual(4);
     expect(fetchedParameters.radius).toEqual(5000);
-    expect(fetchedParameters.category).toEqual(["restaurant", "bar"]);
+    expect(fetchedParameters.category).toEqual("restaurant");
   });
 });

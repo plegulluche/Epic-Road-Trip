@@ -1,6 +1,6 @@
 // models/searchParameters.js
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const searchParametersSchema = new mongoose.Schema({
   location: {
@@ -36,7 +36,7 @@ const searchParametersSchema = new mongoose.Schema({
     required: false,
   },
   category: {
-    type: [String],
+    type: String,
     required: false,
   },
   createdAt: {
@@ -45,7 +45,7 @@ const searchParametersSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
 });
@@ -54,6 +54,9 @@ searchParametersSchema.statics.getByUserId = async function (userId) {
   return await this.findOne({ user: userId });
 };
 
-const SearchParameters = mongoose.model('SearchParameters', searchParametersSchema);
+const SearchParameters = mongoose.model(
+  "SearchParameters",
+  searchParametersSchema
+);
 
 module.exports = SearchParameters;
