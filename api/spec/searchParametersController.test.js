@@ -55,7 +55,7 @@ describe("searchParametersController", () => {
 
     const saveRes = await request(app)
       .post("/search-parameters")
-      .send({ searchParameters });
+      .query( searchParameters );
 
     expect(saveRes.status).toBe(200);
     expect(saveRes.body).toMatchObject({
